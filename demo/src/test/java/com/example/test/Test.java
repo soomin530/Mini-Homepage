@@ -3,11 +3,10 @@ package com.example.test;
 public class Test {
 	public void test() {
 		System.out.println("시험");
-<<<<<<< HEAD
-		System.out.println("김용찬");
-=======
-		
+		System.out.println("우수민");
 		System.out.println("고민규");
->>>>>>> 86d44007d761d3dd36215290d72c4f7e41119de9
+		System.out.println("신동국");
+		System.out.println("김용찬");
 	}
 }
+
