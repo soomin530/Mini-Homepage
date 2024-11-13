@@ -6,6 +6,7 @@ public class Test {
 		System.out.println("우수민");
 		System.out.println("고민규");
 		System.out.println("신동국");
+		System.out.println("김용찬");
 	}
 }
 
