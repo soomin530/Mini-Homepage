@@ -1,4 +1,4 @@
-package com.twogap.project.config;
+package com.twogap.project.common.config;
 
 import javax.sql.DataSource;
 
