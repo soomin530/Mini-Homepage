@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2 YEARS APART - Login</title>
+
+    <script src="https://kit.fontawesome.com/4d970bf746.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+    <div class="logo">
+        <h1>2 YEARS APART</h1>
+        <h2>MINI HOMEPAGE</h2>
+    </div>
+
+    <div class="login-container">
+        <h2 class="login-title">로그인</h2>
+        
+        <form>
+            <div class="input-group">
+                <label for="userid">ID</label>
+                <input type="text" id="userdId" placeholder="아이디 입력" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="******" required>
+                
+            </div>
+            
+            <div class="remember-me">
+                <div class="remember-me-left">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">아이디 저장</label>
+                </div>
+                
+                <div class="utility-links">
+                    <a href="#">ID 찾기</a> |
+                    <a href="#">PW 찾기</a>
+                </div>
+            </div>
+            
+            <button type="submit" class="login-button">로그인</button>
+            
+            <div class="signup-link">
+                <span>아직 회원이 아니신가요?</span>
+                <a href="#">회원가입</a>
+            </div>
+        </form>
+    </div>
+    
+    <div class="footer">
+        <div>
+            <a href="#">홈페이지소개</a> |
+            <a href="#">개인정보처리방침</a> |
+            <a href="#">고객센터</a>
+        </div>
+    </div>
+    
+</body>
+</html>
