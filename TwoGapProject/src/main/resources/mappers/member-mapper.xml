@@ -24,4 +24,11 @@
 		WHERE MEMBER_NO = #{memberNo}
 	</select>
 	
+	
+	<select id="alertContentView">
+	SELECT ALERT_CONTENT FROM "ALERT"
+	JOIN "MEMBER" USING (MEMBER_NO)
+	WHERE MEMBER_NO = ${memberNo}
+	</select>
+	
 </mapper>

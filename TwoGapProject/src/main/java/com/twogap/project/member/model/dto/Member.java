@@ -27,5 +27,6 @@ public class Member {
 	private String personalCode;
 	private String authority;
 	private String introduction;
+	private String alertContent;
 }
 

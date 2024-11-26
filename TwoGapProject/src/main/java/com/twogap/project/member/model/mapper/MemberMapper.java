@@ -9,4 +9,6 @@ public interface MemberMapper {
 
 	Member selectMember(int memberNo);
 
+	Member alertContentView(int memberNo);
+
 }

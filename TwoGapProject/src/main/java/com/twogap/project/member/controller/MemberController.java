@@ -33,8 +33,23 @@ public class MemberController {
 		model.addAttribute("loginMember", member);
 		
 		
-		return "bords/test";
+		return "boards/test";
 	}
+	
+	@GetMapping("main")
+	public String logIn(@RequestParam("memberNo") int memberNo,
+							 Model model
+			) {
+		
+		Member member = service.selectMember(memberNo);
+		
+		model.addAttribute("loginMember", member);
+		
+		
+		return "boards/main";
+	}
+	
+	
 	
 	
 }
