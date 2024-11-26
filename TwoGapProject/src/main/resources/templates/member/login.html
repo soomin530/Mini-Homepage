@@ -18,21 +18,21 @@
     <div class="login-container">
         <h2 class="login-title">로그인</h2>
         
-        <form>
+        <form action="/member/login" method="POST" name="loginForm" id="loginForm">
             <div class="input-group">
-                <label for="userid">ID</label>
-                <input type="text" id="userdId" placeholder="아이디 입력" required>
+                <label for="memberId">ID</label>
+                <input type="text" id="memberId" name="memberId" placeholder="아이디 입력" required>
             </div>
 
             <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" placeholder="******" required>
+                <label for="memberPw">Password</label>
+                <input type="password" id="memberPw" name="memberPw" placeholder="******" required>
                 
             </div>
             
             <div class="remember-me">
                 <div class="remember-me-left">
-                    <input type="checkbox" id="remember">
+                    <input type="checkbox" id="remember" name="remember">
                     <label for="remember">아이디 저장</label>
                 </div>
                 
