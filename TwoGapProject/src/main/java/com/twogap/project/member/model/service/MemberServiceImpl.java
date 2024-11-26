@@ -19,9 +19,7 @@ public class MemberServiceImpl implements MemberService {
 			return mapper.selectMember(memberNo);
 		}
 
-	@Override
-	public Member alertContentView(int memberNo) {
-		return mapper.alertContentView(memberNo);
-	}
+	
+	
 
 }

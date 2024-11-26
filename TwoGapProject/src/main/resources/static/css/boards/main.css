@@ -1,0 +1,31 @@
+.center-box {
+  width : 100%;
+  padding : 15px;
+  background-color: #CDE3EE;
+  border-radius: 20px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  margin-top: 2rem;
+  text-align:center;
+}
+
+.logo h1{
+  color: #4B6EFF;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.logo h2 {
+  color:#FFA726;
+  font-size:1.5rem;
+}
+
+.alertselect-content {
+  width:80%;
+  height:100%;
+  padding:2rem;
+}
