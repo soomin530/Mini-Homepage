@@ -12,6 +12,6 @@ public class MainController {
 	@RequestMapping("/")
 	public String main() {
 		
-		return "login";
+		return "member/login";
 	}
 }
