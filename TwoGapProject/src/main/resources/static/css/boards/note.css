@@ -1,0 +1,65 @@
+.note-container {
+  display: flex; /* Flexbox 사용 */
+  flex-direction: column;
+  
+  width: 100%;
+  height: 100%;
+
+  padding: 2rem;
+  padding-bottom: 0;
+  background-color: white;
+
+  border-radius: 20px;
+}
+
+.note-container > * {
+  text-decoration: none;
+}
+
+.boards-title{
+  margin-left: 40px;
+}
+
+.divider {
+  width: 100%;
+  height: 2px;
+  background-color: #000000;
+  margin: 1rem 0;
+}
+
+.note-item-list {
+  width: 100%;
+  height: 100% ;
+  display: flex;
+
+  justify-content: start;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.note-item {
+  width: 25%;
+  height: 33%;
+  
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+
+  word-break: break-all;
+  
+}
+
+.note-item > h4 {
+  padding: 0px 5px;
+}
+
+.note-item  > div{
+  width: 100%;
+  height: 100%;
+
+  padding: 10px;  
+  border: 1px solid #ccc;
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
