@@ -74,6 +74,10 @@
   
 }
 
+/* 메세지 색상 지정 */
+.confirm{ color : green; }
+.error{ color : red; }
+
 .form-section input {
 
   border: none;
