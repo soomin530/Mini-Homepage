@@ -19,19 +19,18 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("member")
 @Slf4j
 @RequiredArgsConstructor
-@SessionAttributes({"loginMember"})
+@SessionAttributes({ "loginMember" })
 public class MemberController {
-	
+
 	private final MemberService service;
-	
+
 	@GetMapping("test")
-	public String memberTest(@RequestParam("memberNo") int memberNo,
-							 Model model
-			) {
-		
+	public String memberTest(@RequestParam("memberNo") int memberNo, Model model) {
+
 		Member member = service.selectMember(memberNo);
-		
+
 		model.addAttribute("loginMember", member);
+
 		
 		
 		return "boards/test";
@@ -49,10 +48,16 @@ public class MemberController {
 		
 		return "boards/main";
 	}
-	
-	
-	
-	
-	
-	
+
+
+	@GetMapping("note")
+	public String noteTest(@RequestParam("memberNo") int memberNo, Model model) {
+
+		Member member = service.selectMember(memberNo);
+
+		model.addAttribute("loginMember", member);
+
+		return "boards/note";
+	}
+
 }
