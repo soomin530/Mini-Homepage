@@ -42,5 +42,15 @@ public class MemberController {
 
 		return "boards/note";
 	}
+	
+	@GetMapping("board")
+	public String boardTest(@RequestParam("memberNo") int memberNo, Model model) {
+
+		Member member = service.selectMember(memberNo);
+
+		model.addAttribute("loginMember", member);
+
+		return "boards/board";
+	}
 
 }

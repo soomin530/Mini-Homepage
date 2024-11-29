@@ -66,7 +66,7 @@ function createNoteItemList(result) {
     // 글이 있는 경우
     const noteList = result['noteList'];
 
-    // 글 목록을 출려
+    // 글 목록을 출력
     for( let note of noteList) {
         createNoteItem(noteItemList, note);
     }
@@ -104,11 +104,9 @@ function noteSelectCp(e) {
     fetch("/note/selectList?cp=" + e.target.value)
     .then(resp => resp.json())
     .then(result => {
-
         createNoteItemList(result);
     });
 }
-
 
 
 

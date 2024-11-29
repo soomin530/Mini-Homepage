@@ -1,12 +1,14 @@
 package com.twogap.project.board.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -19,7 +21,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
-// 게시판 목록 조회
+/** 게시판 목록 조회
+ * 
+ * */
 @Controller
 @RequestMapping("board")
 @Slf4j
@@ -30,34 +34,22 @@ public class BoardController {
 	
 	@GetMapping("selectList")
 	@ResponseBody
-	public List<Board> boardSelectList(@SessionAttribute("loginMember") Member loginMember) {
+	public Map<String, Object> boardSelectList(@SessionAttribute("loginMember") Member loginMember,
+											   @RequestParam(value="cp",required = false, defaultValue = "1") int cp) {
 		
 		// 게시판 목록 조회 서비스 호출
-		List<Board> boardList = service.boardSelectList(loginMember.getMemberNo());
+		Map<String, Object> map = service.boardSelectList(loginMember.getMemberNo(), cp);
 		
+		log.debug("map : " + map);
 		
-		return boardList;
+		return map;
 	}
 	
 	
 	
-// 게시판 상세 조회	
-
-	@GetMapping("{boardTypeNo:[0-9]+}/{boardNo:[0-9]+}")
-	public String boardDetail(@PathVariable("boardTypeNo") int boardTypeNo,
-						  	  @PathVariable("boardNo") int boardNo,
-						      Model model,
-		                      RedirectAttributes ra ) {
 	
 	
-	return null;
-	
-	
-}
-	
-	
-	
-	
+		
 	
 
 }
