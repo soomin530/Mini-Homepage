@@ -40,12 +40,12 @@ public class LoginController {
 						HttpServletResponse resp) {
 		Member loginMember = service.login(inputMember);
 		
-		
 		if(loginMember == null) {
 			ra.addFlashAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다.");
 			
 		} else {
 			model.addAttribute("loginMember", loginMember);
+			
 			
 			// 아이디 저장
 			Cookie cookie = new Cookie("remember", loginMember.getMemberId());
