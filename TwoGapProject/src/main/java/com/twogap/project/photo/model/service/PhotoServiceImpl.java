@@ -14,7 +14,7 @@ public class PhotoServiceImpl implements PhotoService {
 	
 	@Override
 	public String viewPhoto(int memberNo) {
-		return mapper.viewPhoto(memberNo);
+		return null;
 	}
 
 }

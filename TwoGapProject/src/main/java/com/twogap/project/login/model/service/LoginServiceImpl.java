@@ -31,6 +31,7 @@ public class LoginServiceImpl implements LoginService {
 		// 일치하는 이메일 없어 DB 조회 결과 null인 경우
 		if(loginMember == null) return null;
 		
+		
 		if(!bcrypt.matches(inputMember.getMemberPw(), loginMember.getMemberPw())) {
 			// 입력받은 비밀번호(평문)와 암호화 된 비밀번호가 일치하지 않는다면
 			return null;
@@ -42,4 +43,74 @@ public class LoginServiceImpl implements LoginService {
 		return loginMember;
 	}
 
+
+	// 아이디 중복 검사
+	@Override
+	public int checkId(String memberId) {
+		
+		return mapper.checkId(memberId);
+	}
+	
+	
+	// 이메일 유효성 검사
+	@Override
+	public int checkEmail(String memberEmail) {
+		
+		return mapper.checkEmail(memberEmail);
+	}
+	
+
+	// 닉네임 중복 검사
+	@Override
+	public int checkNickname(String memberNickname) {
+		
+		return mapper.checkNickname(memberNickname);
+	}
+
+
+	// 회원 가입
+	@Override
+<<<<<<< Updated upstream
+	public int signup(Member inputMember, String[] memberAdress) {
+//		전화번호도 잊지 않고 다시 이어주기
+//		핸드폰 주민등록번호도
+=======
+	public int submit(Member inputMember, String[] memberAdress, String[] memberTel, String[] memberHomeTel) {
+
+		// 주소
+>>>>>>> Stashed changes
+		if(!inputMember.getMemberAdress().equals(",,")) {
+			String address = String.join("^^^", memberAdress);
+			
+			inputMember.setMemberAdress(address);
+		} else {
+			inputMember.setMemberAdress(null);
+<<<<<<< Updated upstream
+=======
+		}
+		
+		
+		// 핸드폰 번호
+		if(!inputMember.getMemberTel().equals(",")) {
+			String tel = String.join("-", memberTel);
+			inputMember.setMemberTel(tel);
+		} else {
+			inputMember.setMemberTel(null);
+		}
+		
+		
+		// 집 전화번호
+		if(!inputMember.getMemberHomeTel().equals(",")) {
+			String homeTel = String.join("-", memberHomeTel);
+			inputMember.setMemberHomeTel(homeTel);
+		} else {
+			inputMember.setMemberHomeTel(null);
+>>>>>>> Stashed changes
+		}
+		
+		String encPw = bcrypt.encode(inputMember.getMemberPw());
+		inputMember.setMemberPw(encPw);
+		
+		return mapper.submit(inputMember);
+	}
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.twogap.project.member.model.dto.Member;
+import com.twogap.project.photo.model.service.PhotoService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +24,8 @@ public class PhotoController {
 	@GetMapping("main")
 	public String photoMain(@SessionAttribute("loginMember") Member loginMember) {
 		int memberNo = loginMember.getMemberNo();
-		return service.viewPhoto(memberNo);
+//		return service.viewPhoto(memberNo);
+		return "";
 	}
 	
 	

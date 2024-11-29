@@ -51,6 +51,7 @@ public class MemberController {
 	}
 
 
+
 	@GetMapping("note")
 	public String noteTest(@RequestParam("memberNo") int memberNo, Model model) {
 
