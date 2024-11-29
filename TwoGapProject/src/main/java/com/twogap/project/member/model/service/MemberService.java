@@ -6,4 +6,6 @@ public interface MemberService {
 
 	Member selectMember(int memberNo);
 
+	
+	
 }

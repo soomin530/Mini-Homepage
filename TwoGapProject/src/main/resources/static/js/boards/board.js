@@ -218,9 +218,10 @@ function boardDetailUpdate(board) {
     postUpdateTitle.innerHTML = "<h1>게시글 수정</h1>";
 
     // 게시글 제목 수정
-    boardDetailPostTitle
-   
+    const boardDetailPostTitle = document.querySelector(".boardDetail-post-title");
+    
 
+    
     // 수정/삭제 -> 확인/취소
     const confirmBtn = document.querySelector(".boardDetail-update");
     // 확인

@@ -298,6 +298,7 @@ body {
 
 
 .menu-item {
+
   height: 63px;
   width: 100%;
 
@@ -314,7 +315,6 @@ body {
   } */
 .fa-star {
   border: 3px solid;
-
   padding: 3px;
   margin-bottom: 4px;
   border-radius: 30px;
@@ -325,6 +325,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 /* 메인 컨테이너 */
@@ -407,6 +408,7 @@ body {
 /* 오른쪽 박스 */
 .right-box {
   width: 350px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-around;

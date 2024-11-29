@@ -19,4 +19,7 @@ public class MemberServiceImpl implements MemberService {
 			return mapper.selectMember(memberNo);
 		}
 
+	
+	
+
 }

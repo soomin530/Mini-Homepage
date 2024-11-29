@@ -4,7 +4,6 @@
 
 	<select id="selectMember">
 		SELECT
-
 			MEMBER_NO,
 			MEMBER_ID,
 			MEMBER_PW,
@@ -19,7 +18,6 @@
 			BACKGROUND_COLOR,
 			AUTHORITY,
 			INTRODUCTION
-			
 		FROM "MEMBER"
 		WHERE MEMBER_NO = #{memberNo}
 	</select>

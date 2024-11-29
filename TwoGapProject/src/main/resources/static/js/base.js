@@ -1,8 +1,9 @@
 /** 페이지 네이션 작업
+ *  11.29 파라미터 추가 이유는 게시판마다 가져올 함수를 구별할 방법이 떠오르지 않아서 입니다.
  * 선언 참조 /js/boards/note.js 74번 라인 참고해서 참고하기
  * @author 신동국
  */
-function pagination(pagination) {
+function pagination(pagination, boardTypeNo) {
 
   let pageUl = document.querySelector(".pagination");
 
@@ -75,7 +76,27 @@ function pagination(pagination) {
       continue;
     }
 
+    // 11.29 추가 파라미터 가져올 방법이 안 떠오름
+    switch (boardTypeNo) {
+      case 1:
+        page.addEventListener("click", e => noteSelectCp(e));
+        break;
+        
+      case 2:
+        page.addEventListener("click", e => noteSelectCp(e));
+        break;
+
+      case 3:
+        page.addEventListener("click", e => noteSelectCp(e));
+        break;
+
+      case 4:
+        page.addEventListener("click", e => noteSelectCp(e));
+        break;
+
+      default:
+        statement3;
+    }
     // 페이지 이동 요청 이벤트
-    page.addEventListener("click", e => noteSelectCp(e));
   }
 }
