@@ -4,7 +4,6 @@
 
 	<select id="selectMember">
 		SELECT
-
 			MEMBER_NO,
 			MEMBER_ID,
 			MEMBER_PW,
@@ -19,9 +18,15 @@
 			BACKGROUND_COLOR,
 			AUTHORITY,
 			INTRODUCTION
-			
 		FROM "MEMBER"
 		WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
+	
+	<select id="alertContentView">
+	SELECT ALERT_CONTENT FROM "ALERT"
+	JOIN "MEMBER" USING (MEMBER_NO)
+	WHERE MEMBER_NO = #{memberNo}
 	</select>
 	
 </mapper>

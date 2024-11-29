@@ -9,4 +9,8 @@ public interface MemberMapper {
 
 	Member selectMember(int memberNo);
 
+	
+
+	
+
 }

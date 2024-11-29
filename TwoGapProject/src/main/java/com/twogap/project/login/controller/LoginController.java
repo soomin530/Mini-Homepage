@@ -52,6 +52,7 @@ public class LoginController {
 		} else {
 			model.addAttribute("loginMember", loginMember);
 			
+			
 			// 아이디 저장
 			Cookie cookie = new Cookie("remember", loginMember.getMemberId());
 			cookie.setPath("/");
