@@ -34,5 +34,24 @@
 		WHERE MEMBER_DEL_FL = 'N'
 		AND MEMBER_NICKNAME = #{memberNickname}
 	 </select>
-	
+	 
+	 <insert id="signup">
+	 INSERT INTO "MEMBER" VALUES
+	( 
+		MEM_SEQ.NEXTVAL,
+		#{memberId},
+		#{memberPw},
+		#{memberEmail},
+		#{memberNickname},
+		DEFAULT,
+		#{memberTel},
+		#{memberHomeTel},
+		#{memberAdress},
+		NULL,
+		#{personalCode},
+		DEFAULT,
+		DEFAULT,
+		NULL
+	)
+	 </insert>
 </mapper>

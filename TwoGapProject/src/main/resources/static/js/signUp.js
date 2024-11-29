@@ -25,7 +25,7 @@ function execDaumPostcode() {
 }
 
 // 주소 검색 버튼 클릭 시
-document.querySelector("#searchAddress").addEventListener("click", execDaumPostcode); // 이름 있는 함수 정의 시 그것만 불러서 사용하면 됨
+document.querySelector("#searchAddress").addEventListener("click", execDaumPostcode);
 
 // ----------------------------------------------
 // **** 회원 가입 유효성 검사 *****
@@ -34,12 +34,13 @@ document.querySelector("#searchAddress").addEventListener("click", execDaumPostc
 // - true  == 해당 항목은 유효한 형식으로 작성됨
 // - false == 해당 항목은 유효하지 않은 형식으로 작성됨
 const checkObj = {
+    "memberId" : false,
     "memberEmail": false,
     "memberPw": false,
     "memberPwConfirm": false,
     "memberNickname": false,
-    "memberTel": false,
-    "memberHomeTel": false,
+    // "personalCode": false,
+    // "memberTel": false,
     "authKey": false
 };
 
@@ -83,7 +84,7 @@ const emailDomain = document.querySelector("#member-email-domain");
 let inputEmail = null;
 
 // 인증번호 받기 버튼 클릭 시 
-sendAuthKeyBtn.addEventListener("click", () => {
+sendAuthKeyBtn.addEventListener("click", async e => {
 
     // 이메일 인증 후 이메일이 변경된 경우
     checkObj.authKey = false;
@@ -125,39 +126,29 @@ sendAuthKeyBtn.addEventListener("click", () => {
         emailMessage.classList.add('error'); // 글자를 빨간색으로 변경
         emailMessage.classList.remove('confirm'); // 초록색 제거
         checkObj.memberEmail = false; // 유효하지 않은 이메일임을 기록
+
         return;
     }
 
     // 5) 유효한 이메일 형식인 경우 중복 검사 수행
     // 비동기(ajax)
-    fetch("/member/checkEmail?memberEmail=" + inputEmail) 
-    .then(resp => resp.text())
-    .then(count => {
-        // count : 1이면 중복, 0이면 중복 아님
-        // == :    값이 같은지 비교   ex) "1" == 1 -> true
-        // === : 타입까지 같은지 비교 ex) "1" === 1 -> false
-        if(count == 1) { // 중복 O
-            emailMessage.innerText = "이미 사용 중인 이메일입니다.";
-            emailMessage.classList.add("error");
-            emailMessage.classList.remove("confirm");
-            checkObj.memberEmail = false; // 중복은 유효하지 않은 상태다..
-            return;
-        }
+    const resp = await fetch("/member/checkEmail?memberEmail=" + inputEmail);
+    const count = await resp.text();
 
+    if (count > 0) {
+        emailMessage.innerText = "이미 사용 중인 이메일입니다.";
+        emailMessage.classList.add("error");
+        emailMessage.classList.remove("confirm");
+        checkObj.memberEmail = false;
+        return;
+    } else {
         // 중복 X 경우
         emailMessage.innerText = "사용 가능한 이메일입니다.";
         emailMessage.classList.add("confirm");
         emailMessage.classList.remove("error");
         checkObj.memberEmail = true; // 유효한 이메일
 
-    })
-    .catch(error => {
-        // fetch 수행 중 예외 발생 시 처리
-        console.log(error); // 발생한 예외 출력
-
-    });
-
-    
+    }
 
     // 새로운 인증번호 발급을 원하는것이기 때문에 
     // 새로 발급받은 인증번호 확인전까진 checkObj.authKey는 false
@@ -165,34 +156,29 @@ sendAuthKeyBtn.addEventListener("click", () => {
     // 인증번호 발급 관련 메세지 비우기
     authKeyMessage.innerText = "";
 
-    // 중복되지 않은 유효한 이메일을 입력한 경우가 아니면
-    if (!checkObj.memberEmail) {
-        alert("유효한 이메일 작성 후 클릭해 주세요");
-        return;
-    }
-
     // 클릭 시 타이머 숫자 초기화
     min = initMin;
     sec = initSec;
 
     // 이전 동작중인 인터벌 클리어(없애기)
     clearInterval(authTimer);
-
+    console.log(inputEmail);
     // *************************************
+    // 잊지말고 꼭하기 꼭
     // 비동기로 서버에서 메일보내기 
     fetch("/email/signup", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {"Content-Type" : "application/json"},
         body: inputEmail
     })
-    .then(resp => resp.text())
-    .then(result => {
-        if (result == 1) {
-            console.log("인증 번호 발송 성공");
-        } else {
-            console.log("인증 번호 발송 실패!");
-        }
-    })
+        .then(resp => resp.text())
+        .then(result => {
+            if (result == 1) {
+                console.log("인증 번호 발송 성공");
+            } else {
+                console.log("인증 번호 발송 실패!");
+            }
+        })
 
 
 
@@ -272,33 +258,33 @@ checkAuthKeyBtn.addEventListener("click", () => {
         "email": inputEmail,
         "authKey": authKey.value
     };
-
+    console.log(obj);
     // 인증번호 확인용 비동기 요청 보냄
     fetch("/email/checkAuthKey", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(obj) // obj JS 객체를 JSON으로 변경
     })
-        .then(resp => resp.text())
-        .then(result => {
-            // 1 or 0
+    .then(resp => resp.text())
+    .then(result => {
+        // 1 or 0
 
-            if (result == 0) { // 인증번호 일치 안 할 때
-                alert("인증번호가 일치하지 않습니다.");
-                checkObj.authKey = false;
-                return;
-            }
+        if (result == 0) { // 인증번호 일치 안 할 때
+            alert("인증번호가 일치하지 않습니다.");
+            checkObj.authKey = false;
+            return;
+        }
 
-            // 인증번호 일치할 때
-            clearInterval(authTimer); // 타이머 멈춤
+        // 인증번호 일치할 때
+        clearInterval(authTimer); // 타이머 멈춤
 
-            authKeyMessage.innerText = "인증되었습니다.";
-            authKeyMessage.classList.remove("error");
-            authKeyMessage.classList.add("confirm");
+        authKeyMessage.innerText = "인증되었습니다.";
+        authKeyMessage.classList.remove("error");
+        authKeyMessage.classList.add("confirm");
 
-            checkObj.authKey = true; // 인증번호 검사 여부 true 변경
+        checkObj.authKey = true; // 인증번호 검사 여부 true 변경
 
-        });
+    });
 
 });
 
@@ -306,39 +292,247 @@ checkAuthKeyBtn.addEventListener("click", () => {
 // ---------------------------------
 const checkId = document.querySelector("#checkId");
 
-checkId.addEventListener("click", () => {
+checkId.addEventListener("click", async e => {
+
 
     // 아이디 유효성 검사
     const memberId = document.querySelector("#memberId");
     const idMessage = document.querySelector("#idMessage");
 
-    // 5) 유효한 아이디 형식인 경우 중복 검사 수행
-    // 비동기(ajax)
-    fetch("/member/checkId?memberId=" + inputId) 
-    .then(resp => resp.text())
-    .then(count => {
-        // count : 1이면 중복, 0이면 중복 아님
-        // == :    값이 같은지 비교   ex) "1" == 1 -> true
-        // === : 타입까지 같은지 비교 ex) "1" === 1 -> false
-        if(count == 1) { // 중복 O
-            idMessage.innerText = "이미 사용 중인 아이디입니다.";
-            idMessage.classList.add("error");
-            idMessage.classList.remove("confirm");
-            checkObj.memberId = false; // 중복은 유효하지 않은 상태다..
+     // 입력된 아이디기 없을 경우
+     if (memberId.value.replace('@', '').trim().length === 0) { // memberId가 문자열이 아니라는 에러
+        idMessage.innerText = "사용할 아이디를 입력해주세요.";  
+
+        // 메시지에 색상을 추가하는 클래스 모두 제거
+        idMessage.classList.add('error');
+
+        // 이메일 유효성 검사 여부를 false 변경
+        checkObj.memberId = false;
+
+        // 잘못 입력한 띄어쓰기가 있을 경우 없앰
+        memberId.value = "";
+
+        return;
+    }
+
+    // const regExp = /^[a-zA-Z0-9._%+-]$/;
+
+    // // 입력 받은 아이디가 정규식과 일치하지 않는 경우
+    // // (알맞은 아이디 형태가 아닌 경우)
+    // if (!regExp.test(inputEmail)) {
+    //     emailMessage.innerText = "알맞은 이메일 형식으로 작성해주세요.";
+    //     emailMessage.classList.add('error'); // 글자를 빨간색으로 변경
+    //     emailMessage.classList.remove('confirm'); // 초록색 제거
+    //     checkObj.memberEmail = false; // 유효하지 않은 이메일임을 기록
+
+    //     return;
+    // }
+
+    // 유효한 아이디 형식인 경우 중복 검사 수행
+    const resp = await fetch("/member/checkId?memberId=" + memberId.value);
+    const count = await resp.text();
+
+    // count : 1 -> 중복, 0 -> 중복 X
+    if (count == 1) { // 중복 O
+        idMessage.innerText = "이미 사용 중인 아이디입니다.";
+        idMessage.classList.add("error");
+        idMessage.classList.remove("confirm");
+        checkObj.memberId = false; // 중복은 유효하지 않은 상태
+        return;
+    }
+
+    // 중복 X 경우
+    idMessage.innerText = "사용 가능한 아이디입니다.";
+    idMessage.classList.add("confirm");
+    idMessage.classList.remove("error");
+    checkObj.memberId = true; // 유효한 아이디
+
+});
+
+// ----------------------------------------------------
+// 비밀번호 일치 여부, 유효성 검사
+const memberPw = document.querySelector("#memberPw");
+const memberPwConfirm = document.querySelector("#memberPwConfirm");
+const pwMessage = document.querySelector("#pwMessage");
+const checkPwMessage = document.querySelector("#checkPwMessage");
+
+// 비밀번호, 비밀번호 확인 일치 확인
+const checkPw = () => {
+    if (memberPw.value === memberPwConfirm.value) {
+        checkPwMessage.innerText = "비밀번호가 일치합니다.";
+        checkPwMessage.classList.add("confirm");
+        checkPwMessage.classList.remove("error");
+        checkObj.memberPwConfirm = true; // 같을 경우 비밀번호 확인 true
+        return;
+    }
+    checkPwMessage.innerText = "비밀번호가 일치하지 않습니다.";
+    checkPwMessage.classList.add("error");
+    checkPwMessage.classList.remove("confirm");
+    checkObj.memberPwConfirm = false; // 다를 경우 비밀번호 확인 false
+};
+
+// 유효성 검사
+memberPw.addEventListener("input", e => {
+    const inputPw = e.target.value;
+
+    if (inputPw.trim().length === 0) {
+        pwMessage.innerText = "영어, 숫자, 특수문자(!, @, #, -, _) 6~20 글자 사이로 입력해주세요.";
+        pwMessage.classList.remove("confirm", "error");
+        checkObj.memberPw = false; // 비밀번호 유효 X
+        memberPw.value = ""; // 처음에 띄어쓰기 못하게 막기
+        return;
+    }
+
+    const regExp = /^[a-zA-Z0-9!@#_-]{6,20}$/;
+
+    if (!regExp.test(inputPw)) { // 유효하지 않으면
+        pwMessage.innerText = "비밀번호가 유효하지 않습니다";
+        pwMessage.classList.add("error");
+        pwMessage.classList.remove("confirm");
+        checkObj.memberPw = false;
+        return;
+    }
+
+    // 유효한 경우
+    pwMessage.innerText = "유효한 비밀번호 형식입니다";
+    pwMessage.classList.add("confrim");
+    pwMessage.classList.remove("error");
+    checkObj.memberPw = true;
+
+    if (memberPwConfirm.value.length > 0) {
+        checkPw();
+    }
+});
+
+memberPwConfirm.addEventListener("input", () => {
+
+    if (checkObj.memberPw) {
+        checkPw(); // 비교하는 함수 수행
+        return;
+    }
+
+    checkObj.memberPwConfirm = false;
+});
+
+// -----------------------------------------------
+// 닉네임 중복 여부 및 유효성 검사
+const nicknameMessage = document.querySelector("#nicknameMessage");
+const checkNickname = document.querySelector("#checkNickname");
+
+checkNickname.addEventListener("click", (e) => { 
+    
+    const memberNickname = document.querySelector("#memberNickname");
+    console.log(memberNickname.value)
+    if (memberNickname.value.trim().length === 0) {
+        nicknameMessage.innerText = "한글, 영어, 숫자로만 2~10 글자로 입력해주세요.";
+        nicknameMessage.classList.remove("confirm", "error");
+        checkObj.memberNickname = false;
+        memberNickname.value = "";
+        return;
+    }
+
+    const regExp = /^[가-힣\w\d]{2,10}$/;
+
+    if( !regExp.test(memberNickname.value) ) { 
+        nicknameMessage.innerText = "유효하지 않은 닉네임 형식입니다.";
+        nicknameMessage.classList.add("error");
+        nicknameMessage.classList.remove("confirm");
+        checkObj.memberNickname = false;
+        return;
+    }
+
+    fetch("/member/checkNickname?memberNickname=" + memberNickname.value)
+        .then(resp => resp.text())
+        .then(count => {
+
+            if (count == 1) {
+                nicknameMessage.innerText = "이미 사용 중인 닉네임 입니다.";
+                nicknameMessage.classList.add("error");
+                nicknameMessage.classList.remove("confirm");
+                checkObj.memberNickname = false;
+                return;
+            }
+
+            nicknameMessage.innerText = "사용 가능한 닉네임 입니다.";
+            nicknameMessage.classList.add("confirm");
+            nicknameMessage.classList.remove("error");
+            checkObj.memberNickname = true;
+        })
+        .catch(err => console.log(err));
+});
+
+// --------------------------------------------------------
+// 주민등록번호 숫자만 입력하게 제한
+
+const personalCode1 = document.querySelector(".personalCode1");
+const personalCode2 = document.querySelector(".personalCode2");
+const personalMessage = document.querySelector(".personalMessage");
+
+personalCode1.addEventListener("input", function (event) {
+    this.value = this.value.replace(/[^0-9]/g, '');
+    // personalMessage.innerText = "숫자만 입력해주세요.";
+});
+
+personalCode2.addEventListener("input", function (event) {
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
+
+// --------------------------------------------------------
+// 핸드폰번호 숫자만 입력하게 제한
+
+const memberTel1 = document.querySelector("#memberTel1");
+const memberTel2 = document.querySelector("#memberTel2");
+const memberTel3 = document.querySelector("#memberTel3");
+
+memberTel1.addEventListener("input", function (event) {
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
+memberTel2.addEventListener("input", function (event) {
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
+memberTel3.addEventListener("input", function (event) {
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
+
+// --------------------------------------------------------
+// 집 전화번호 숫자만 입력하게 제한
+
+const memberHomeTel1 = document.querySelector("#memberHomeTel1");
+const memberHomeTel2 = document.querySelector("#memberHomeTel2");
+const memberHomeTel3 = document.querySelector("#memberHomeTel3");
+
+memberHomeTel1.addEventListener("input", function (event) {
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
+memberHomeTel2.addEventListener("input", function (event) {
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
+memberHomeTel3.addEventListener("input", function (event) {
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
+
+// -----------------------------------------------------------
+
+// 필수 입력 칸이 null일 때 회원가입 버튼 안 눌리게 제한
+const signUpForm = document.querySelector("#signUpForm");
+const formSection = document.querySelector(".formSection");
+
+formSection.addEventListener("submit", e => {
+
+    for(let key in checkObj) {
+
+        if(!checkObj[key]) {
+            console.log(key);
+            alert("필수 입력 칸을 모두 입력해주세요!");
+            e.preventDefault(); // 클릭 이벤트 중단
+        
+            // document.getElementById(key).focus(); // 초점 이동
+        
             return;
         }
+    }  
+});
 
-        // 중복 X 경우
-        idMessage.innerText = "사용 가능한 아이디입니다.";
-        idMessage.classList.add("confirm");
-        idMessage.classList.remove("error");
-        checkObj.memberId = true; // 유효한 아이디
 
-    })
-    .catch(error => {
-        // fetch 수행 중 예외 발생 시 처리
-        console.log(error); // 발생한 예외 출력
 
-    });
-})
-    
+

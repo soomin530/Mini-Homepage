@@ -121,11 +121,11 @@ public class LoginController {
 	 */
 	@PostMapping("signup")
 	public String signup(/*@ModelAttribute*/ Member inputMember, // 비동기가 아니기 때문에 반환형 String.
-						@RequestParam("Address")String[] Address,
+						@RequestParam("Address")String[] memberAdress,
 						RedirectAttributes ra) { 
 		
 		// 회원가입 서비스 호출
-		int result = service.signup(inputMember, Address); // ^^^로 바꾸는 데이터 가공 일어남
+		int result = service.signup(inputMember, memberAdress); // ^^^로 바꾸는 데이터 가공 일어남
 		
 		String path = null;
 		String message = null;

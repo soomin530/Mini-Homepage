@@ -20,7 +20,14 @@ public class BoardsServiceImpl implements BoardsService {
 
 	@Override
 	public int alertUpdate(Member member) {
-		return mapper.updateAlert(member);
+		
+		int result =  mapper.updateAlert(member);
+		
+		if( result == 0) {
+			result= mapper.insertAlert(member);
+		};
+		
+		return result;
 	}
 
 

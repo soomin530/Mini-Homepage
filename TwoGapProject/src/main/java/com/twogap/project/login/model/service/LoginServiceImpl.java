@@ -70,14 +70,15 @@ public class LoginServiceImpl implements LoginService {
 
 	// 회원 가입
 	@Override
-	public int signup(Member inputMember, String[] Address) {
-		
-		if(!inputMember.getAdress().equals(",,")) {
-			String address = String.join("^^^", Address);
+	public int signup(Member inputMember, String[] memberAdress) {
+//		전화번호도 잊지 않고 다시 이어주기
+//		핸드폰 주민등록번호도
+		if(!inputMember.getMemberAdress().equals(",,")) {
+			String address = String.join("^^^", memberAdress);
 			
-			inputMember.setAdress(address);
+			inputMember.setMemberAdress(address);
 		} else {
-			inputMember.setAdress(null);
+			inputMember.setMemberAdress(null);
 		}
 		
 		String encPw = bcrypt.encode(inputMember.getMemberPw());
