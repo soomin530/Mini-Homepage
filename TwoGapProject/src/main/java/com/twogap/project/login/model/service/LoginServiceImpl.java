@@ -70,20 +70,47 @@ public class LoginServiceImpl implements LoginService {
 
 	// 회원 가입
 	@Override
+<<<<<<< Updated upstream
 	public int signup(Member inputMember, String[] memberAdress) {
 //		전화번호도 잊지 않고 다시 이어주기
 //		핸드폰 주민등록번호도
+=======
+	public int submit(Member inputMember, String[] memberAdress, String[] memberTel, String[] memberHomeTel) {
+
+		// 주소
+>>>>>>> Stashed changes
 		if(!inputMember.getMemberAdress().equals(",,")) {
 			String address = String.join("^^^", memberAdress);
 			
 			inputMember.setMemberAdress(address);
 		} else {
 			inputMember.setMemberAdress(null);
+<<<<<<< Updated upstream
+=======
+		}
+		
+		
+		// 핸드폰 번호
+		if(!inputMember.getMemberTel().equals(",")) {
+			String tel = String.join("-", memberTel);
+			inputMember.setMemberTel(tel);
+		} else {
+			inputMember.setMemberTel(null);
+		}
+		
+		
+		// 집 전화번호
+		if(!inputMember.getMemberHomeTel().equals(",")) {
+			String homeTel = String.join("-", memberHomeTel);
+			inputMember.setMemberHomeTel(homeTel);
+		} else {
+			inputMember.setMemberHomeTel(null);
+>>>>>>> Stashed changes
 		}
 		
 		String encPw = bcrypt.encode(inputMember.getMemberPw());
 		inputMember.setMemberPw(encPw);
 		
-		return mapper.signup(inputMember);
+		return mapper.submit(inputMember);
 	}
 }

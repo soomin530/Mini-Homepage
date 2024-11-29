@@ -24,6 +24,7 @@ public class Member {
 	private String memberHomeTel;
 	private String memberAdress;
 	private String profileImg;
+	private String backgroundColor;
 	private String personalCode;
 	private String backgroudColor;
 	private String authority;

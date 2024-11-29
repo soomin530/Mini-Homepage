@@ -35,7 +35,7 @@ public interface LoginMapper {
 	 * @param inputMember
 	 * @return
 	 */
-	int signup(Member inputMember);
+	int submit(Member inputMember);
 
 
 }

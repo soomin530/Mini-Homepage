@@ -16,43 +16,48 @@
       <div class="header">
       
       </div>
-      <form action="/member/signup" class="form-section" method="GET">
-        <h2 class="form-title">회원가입</h2>         
+      <form action="/member/signup" class="formSection" method="POST">
+        <h2 class="form-title">회원가입</h2>      
+        <br>
+        <h4 style="text-align: left;">'*'은 필수 입력 사항입니다.</h4>
+        <br>
 
         <!-- ID Input -->
         <div class="form-group">
-          <label for="memberId">ID</label>
+          <label for="memberId">* ID</label>
           <div class="input-row">
-            <input type="text" name="memberId" id="memberId" class="memberId" placeholder="아이디 입력">
+            <input type="text" name="memberId" id="memberId" class="memberId" placeholder="아이디 입력" value="test">
             <button type="button" id="checkId" class="btn btn-secondary">중복확인</button>
           </div>
+          <span class="signUp-message" id="idMessage"></span>
         </div>
-        <span class="signUp-message" id="idMessage">사용할 아이디를 입력해주세요.</span>
 
 
         <!-- Password -->
         <div class="form-group">
-          <label for="memberPw">비밀번호</label>
+          <label for="memberPw">* 비밀번호</label>
           <div class="input-row">
-            <input type="password" name="memberPw" id="memberPw" class="memberPw" placeholder="********">
+            <input type="password" name="memberPw" id="memberPw" class="memberPw" placeholder="********" value="test123">
           </div>
+          <span class="signUp-message" id="pwMessage"></span>
           
         </div>
         <div class="form-group">
           <label for="memberPwConfirm">비밀번호 확인</label>
           <div class="input-row">
-            <input type="password" name="memberPwConfirm" id="memberPwConfirm" class="memberPwConfirm" placeholder="********">
+            <input type="password" name="memberPwConfirm" id="memberPwConfirm" class="memberPwConfirm" placeholder="********" value="test123">
           </div>
+          <span class="signUp-message" id="checkPwMessage"></span>
         </div>
 
 
         <!-- Email -->
         <div class="form-group">
-          <label for="memberEmail">Email</label>
+          <label for="memberEmail">* Email</label>
           <div class="input-row">
-              <input type="text" name="memberEmail" id="member-email-id" placeholder="이메일" maxlength="18" autocomplete="off"/>
+              <input type="text" name="memberEmail" id="member-email-id" placeholder="이메일" maxlength="18" autocomplete="off" value="test"/>
               <span>@</span> 
-              <input type="text" name="memberEmail" id="member-email-domain" placeholder="이메일 도메인" maxlength="18" autocomplete="off"/>
+              <input type="text" name="memberEmail" id="member-email-domain" placeholder="이메일 도메인" maxlength="18" autocomplete="off" value="test.com"/>
   
               <div class="memberEmail" id="memberEmail">
                   <select name="memberEmail" id="memberEmail">
@@ -68,7 +73,7 @@
   
                 <button type="button" id="sendAuthKeyBtn" class="btn btn-secondary">인증번호 받기</button>
           </div>
-            <span class="signUp-message" id="emailMessage">메일을 받을 수 있는 이메일을 입력해주세요.</span>
+            <span class="signUp-message" id="emailMessage"></span>
   
         </div>
 
@@ -87,53 +92,57 @@
 
         <!-- Name -->
         <div class="form-group">
-          <label for="memberNickname">닉네임</label>
+          <label for="memberNickname">* 닉네임</label>
           <div class="input-row">
-            <input type="text" name="memberNickname" id="memberNickname" placeholder="닉네임 입력">
-            <button type="button" class="btn btn-secondary">중복확인</button>
+            <input type="text" name="memberNickname" id="memberNickname" placeholder="닉네임 입력" value="바보">
+            <button type="button" id="checkNickname" class="btn btn-secondary">중복확인</button>
           </div>
+          <span class="signUp-message" id="nicknameMessage">한글, 영어, 숫자로만 2~10 글자로 입력해주세요.</span>
         </div>
 
         <!-- 주민등록번호 -->
+         
         <div class="form-group dual-input">
-          <label for="personalCode">주민등록번호</label>
-          <input type="text" name="personalCode" id="personalCode" class="personalCode" placeholder="앞자리 (예: 900101)">
+          <label for="personalCode">* 주민등록번호</label>
+          <input type="text" name="personalCode" id="personalCode1" class="personalCode1" maxlength="6" placeholder="앞자리 (예: 900101)" value="123465">
           <span>-</span>
-          <input type="password" name="pNo2" id="pNo2" class="pNo2" placeholder="뒷자리 (예: 1234567)">
+          <input type="password" name="personalCode" id="personalCode2" class="personalCode2" maxlength="7" placeholder="뒷자리 (예: 1234567)" value="1234567">
+          <span class="signUp-message" id="personalMessage"></span>
         </div>
+        
 
         <!-- Phone -->
         <div class="form-group dual-input">
-          <label for="memberTel">핸드폰번호</label>
-          <input type="text" name="memberTel" id="memberTel1" class="memberTel" placeholder="010">
+          <label for="memberTel">* 핸드폰번호</label>
+          <input type="text" name="memberTel" id="memberTel1" class="memberTel" maxlength="3" placeholder="010" value="010">
           <span>-</span>
-          <input type="text" name="memberTel" id="memberTel2" class="memberTel" placeholder="1234">
+          <input type="text" name="memberTel" id="memberTel2" class="memberTel" maxlength="4" placeholder="1234" value="1234">
           <span>-</span>
-          <input type="text" name="memberTel" id="memberTel3" class="memberTel" placeholder="5678">
+          <input type="text" name="memberTel" id="memberTel3" class="memberTel" maxlength="4" placeholder="5678" value="1234">
         </div>
 
         <!-- Home -->
         <div class="form-group dual-input">
           <label for="memberHomeTel">연락처(집)</label>
-          <input type="text" name="memberHomeTel" id="memberHomeTel1" class="memberHomeTel" placeholder="02">
+          <input type="text" name="memberHomeTel" id="memberHomeTel1" class="memberHomeTel" maxlength="3" placeholder="02">
           <span>-</span>
-          <input type="text" name="memberHomeTel" id="memberHomeTel2" class="memberHomeTel" >
+          <input type="text" name="memberHomeTel" id="memberHomeTel2" class="memberHomeTel" maxlength="4">
           <span>-</span>
-          <input type="text" name="memberHomeTel" id="memberHomeTel3" class="memberHomeTel" >
+          <input type="text" name="memberHomeTel" id="memberHomeTel3" class="memberHomeTel" maxlength="4">
         </div>
 
         <!-- Address -->
         <div class="form-group">
             <label for="Adress">주소</label>
             <div class="input-row">
-              <input type="text" name="Adress" id="postcode" class="Adress" placeholder="우편번호" readonly>
+              <input type="text" name="memberAdress" id="postcode" class="Adress" placeholder="우편번호" readonly value="탐라국">
               <button type="button" id="searchAddress" class="btn btn-secondary">검색</button>
             </div>
             <div class="input-row">
-              <input type="text" name="Adress" id="address" class="Adress" placeholder="기본 주소" readonly>
+              <input type="text" name="memberAdress" id="address" class="Adress" placeholder="기본 주소" readonly value="돌할아버지 3번지">
             </div>
             <div class="input-row">
-              <input type="text" name="Adress" id="detailAddress" class="Adress" placeholder="상세 주소">
+              <input type="text" name="memberAdress" id="detailAddress" class="Adress" placeholder="상세 주소" value="감귤 1박스">
             </div>
           </div>
   

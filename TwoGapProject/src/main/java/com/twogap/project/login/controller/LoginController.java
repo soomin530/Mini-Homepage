@@ -27,11 +27,12 @@ public class LoginController {
 	@Autowired
 	private LoginService service;
 	
-	/** 로그인 <- 우수민 진행
+	/** 로그인 
 	 * @param inputMember
 	 * @param ra
 	 * @param model
 	 * @return
+	 * @author 우수민
 	 */
 	@PostMapping("login")
 	public String login(Member inputMember,
@@ -74,8 +75,9 @@ public class LoginController {
 		
 	}
 	
-	/** 회원가입 페이지로 이동 <- 우수민 진행
+	/** 회원가입 페이지로 이동
 	 * @return
+	 * @author 우수민
 	 */
 	@GetMapping("signup")
 	public String signUpPage() {
@@ -83,8 +85,9 @@ public class LoginController {
 		
 	}
 	
-	/** 아이디 중복 검사 (비동기 요청) <- 우수민 진행
+	/** 아이디 중복 검사 (비동기 요청) 
 	 * @return
+	 * @author 우수민
 	 */
 	@ResponseBody // 응답 본문(fetch 요청한 쪽)으로 돌려보냄
 	@GetMapping("checkId") // Get 요청 /member/checkEmail
@@ -93,39 +96,57 @@ public class LoginController {
 		
 	}
 	
-	/** 이메일 유효성 검사 (비동기 요청) <- 우수민 진행
+	/** 이메일 유효성 검사 (비동기 요청)
 	 * @param memberEmail
 	 * @return
+	 * @author 우수민
 	 */
 	@GetMapping("checkEmail")
+	@ResponseBody
 	public int checkEmail(@RequestParam("memberEmail")String memberEmail) {
 		return service.checkEmail(memberEmail);
 		
 	}
 	
-	/** 닉네임 유효성 검사 <- 우수민 진행
+	/** 닉네임 유효성 검사 
 	 * @return 중복 1, 아니면 0
+	 * @author 우수민
 	 */
 	@ResponseBody // 비동기 요청 쪽으로 보냄
-	@GetMapping("checkNickname")
+	@PostMapping("checkNickname")
 	public int checkNickname(@RequestParam("memberNickname")String memberNickname) {
 		return service.checkNickname(memberNickname);
 	}
 	
 	
-	/** 회원 가입	<- 우수민 진행
-	 * @param inputMember : 입력된 회원 정보(memberAddress는 따로 배열로 받아서 처리))
-	 * @param memberAddress : 입력한 주소 input 3개의 값을 배열로 전달 [우편번호, 도로명/지번주소, 상세주소]
-	 * @param ra 
+
+	/** 회원가입 제출 - 주소, 핸드폰번호, 집전화번호 배열로 받아서 처리?
+	 * @param inputMember
+	 * @param Address
+	 * @param memberTel
+	 * @param memberHomeTel
+	 * @param ra
 	 * @return
+	 * @author 우수민
 	 */
 	@PostMapping("signup")
+<<<<<<< Updated upstream
 	public String signup(/*@ModelAttribute*/ Member inputMember, // 비동기가 아니기 때문에 반환형 String.
 						@RequestParam("Address")String[] memberAdress,
 						RedirectAttributes ra) { 
 		
 		// 회원가입 서비스 호출
 		int result = service.signup(inputMember, memberAdress); // ^^^로 바꾸는 데이터 가공 일어남
+=======
+	public String submit(/*@ModelAttribute*/ Member inputMember, 
+						@RequestParam("memberAdress")String[] memberAdress,
+						@RequestParam("memberTel")String[] memberTel,
+						@RequestParam("memberHomeTel")String[] memberHomeTel,
+						RedirectAttributes ra) { 
+		
+		// 회원가입 서비스 호출
+		int result = service.submit(inputMember, memberAdress, memberTel, memberHomeTel); // 데이터 가공 
+>>>>>>> Stashed changes
 		
 		String path = null;
 		String message = null;
