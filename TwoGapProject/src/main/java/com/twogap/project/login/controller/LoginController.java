@@ -39,7 +39,6 @@ public class LoginController {
 						@RequestParam(value = "remember", required = false) String remember,
 						HttpServletResponse resp) {
 		Member loginMember = service.login(inputMember);
-		log.debug("loginMember : " + loginMember);
 		
 		if(loginMember == null) {
 			ra.addFlashAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다.");

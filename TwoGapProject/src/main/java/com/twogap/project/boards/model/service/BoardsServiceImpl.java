@@ -18,5 +18,10 @@ public class BoardsServiceImpl implements BoardsService {
 		return mapper.viewAlert(memberNo);
 	}
 
+	@Override
+	public int alertUpdate(Member member) {
+		return mapper.updateAlert(member);
+	}
+
 
 }

@@ -24,8 +24,62 @@
   font-size:1.5rem;
 }
 
-.alertselect-content {
-  width:80%;
-  height:100%;
-  padding:2rem;
+.self-box2{
+  padding: 10px;
+  background-color: #CDE3EE;
+  word-break: break-all;
+  resize: none; 
+  border: none; 
+  outline: none;
+  width: 700px; 
+  height: 500px;
+  cursor: Auto;
+}
+
+.update-logo {
+  font-size: 40px;
+  width: 700px;
+  height: 100px;
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  align-items: left;
+  margin-left: 50px;
+  background-color: white;
+  position: relative; /* position을 relative로 설정하여 가상 요소를 위치시킴 */
+}
+
+.update-logo::before {
+  content: ''; /* 내용이 없지만 스타일을 적용할 수 있도록 */
+  position: absolute;
+  bottom: 0;
+  left: 50%; /* 가운데 정렬 */
+  width: 92%; /* 부모의 너비로 설정 */
+  height: 1px;
+  background-color: rgb(205, 227, 238); /* 원하는 색상 */
+  transform: translateX(-50%); /* 50%만큼 왼쪽으로 이동시켜서 가운데 정렬 */
+}
+
+.update-box{
+  background-color: white;
+  width: 700px;
+  height: 500px;
+  margin-left: 50px;
+  border-radius: 0 0 20px 20px;
+  border: none;
+}
+
+.alert-content{
+  width: 650px;
+  height: 453px;
+  resize: none;
+  overflow: hidden;
+  margin-top: 15px;
+  margin-left: 15px;
+  padding: 15px;
+}
+
+
+.alert-title{
+  margin-top: 30px;
+  margin-left: 50px;
 }

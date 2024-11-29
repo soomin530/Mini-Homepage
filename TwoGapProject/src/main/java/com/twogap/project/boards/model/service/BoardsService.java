@@ -7,5 +7,8 @@ public interface BoardsService {
 	String viewAlert(int memberNo);
 
 
+	int alertUpdate(Member member);
+
+
 
 }
