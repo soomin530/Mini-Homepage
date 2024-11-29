@@ -20,4 +20,5 @@ public class Note {
 	private String noteDate;
 	private String noteUpdateDate;
 	private int memberNo;
+	private int boardTypeNo;
 }

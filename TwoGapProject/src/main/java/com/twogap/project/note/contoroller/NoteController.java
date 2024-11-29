@@ -37,7 +37,6 @@ public class NoteController {
 	public Map<String, Object> noteSelectList(@SessionAttribute("loginMember") Member loginMember,
 									 @RequestParam(value="cp",required = false, defaultValue = "1") int cp,
 									 Model model) {
-		log.debug("cp : " + cp);
 		// noteList 결과 받아오기
 		Map<String, Object> map = service.noteSelectList(loginMember.getMemberNo(), cp);
 		 
