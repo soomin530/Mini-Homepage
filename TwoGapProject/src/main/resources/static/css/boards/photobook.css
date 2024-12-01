@@ -560,8 +560,6 @@ body {
   cursor: pointer;
 }
 
-
-/* 숨기기위한 용도로 만듬  */
-.hidden {
-  display : none;
-}
+/* div {
+    border: 1px solid;
+} */

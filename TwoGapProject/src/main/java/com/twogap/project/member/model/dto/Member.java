@@ -22,10 +22,13 @@ public class Member {
 	private String memberDelFl;
 	private String memberTel;
 	private String memberHomeTel;
-	private String Adress;
+	private String memberAdress;
 	private String profileImg;
+	private String backgroundColor;
 	private String personalCode;
+	private String backgroudColor;
 	private String authority;
 	private String introduction;
+	private String alertContent;
 }
 

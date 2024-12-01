@@ -5,11 +5,14 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.twogap.project.member.model.dto.Member;
 import com.twogap.project.note.model.dto.Note;
@@ -27,6 +30,11 @@ public class NoteController {
 	
 	private final NoteService service;
 	
+	@GetMapping("main")
+	public String noteMain() {
+		return "boards/note";
+	}
+	
 	/** Note 게시글 가져오기
 	 * @param memberNo
 	 * @return List<Note>
@@ -41,6 +49,17 @@ public class NoteController {
 		Map<String, Object> map = service.noteSelectList(loginMember.getMemberNo(), cp);
 		 
 		return map;
+	}
+	
+	@ResponseBody
+	@PutMapping("update")
+	public int noteUpdate(@RequestPart("images") List<MultipartFile> multipartFiles,
+						@RequestPart("note") Note note) {
+		log.debug("note : " + note);
+		for(MultipartFile file :multipartFiles) {
+			log.debug("file : " + file.getOriginalFilename());
+		}
+		return 0;
 	}
 	
 }

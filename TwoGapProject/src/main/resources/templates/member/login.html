@@ -21,12 +21,12 @@
         <form action="/member/login" method="POST" name="loginForm" id="loginForm">
             <div class="input-group">
                 <label for="memberId">ID</label>
-                <input type="text" id="memberId" name="memberId" placeholder="아이디 입력" required>
+                <input type="text" id="memberId" name="memberId" placeholder="아이디 입력" >
             </div>
 
             <div class="input-group">
                 <label for="memberPw">Password</label>
-                <input type="password" id="memberPw" name="memberPw" placeholder="******" required>
+                <input type="password" id="memberPw" name="memberPw" placeholder="******" >
                 
             </div>
             
@@ -44,11 +44,11 @@
             
             <button type="submit" class="login-button">로그인</button>
             
-            <div class="signup-link">
-                <span>아직 회원이 아니신가요?</span>
-                <a href="#">회원가입</a>
-            </div>
         </form>
+        <div class="signup-link">
+            <span>아직 회원이 아니신가요?</span>
+            <a href="/member/signup">회원가입</a>
+        </div>
     </div>
     
     <div class="footer">
@@ -59,7 +59,12 @@
         </div>
     </div>
 
+    <script src="/js/login.js"></script>
     <script src="/js/testConnection.js"></script>
-    
+    <script th:inline="javascript">
+        const message =  /*[[${message}]]*/ "전달 받은 message";
+        
+        if(message != null) alert(message);
+    </script>
 </body>
 </html>

@@ -74,7 +74,11 @@
   
 }
 
-.form-section input {
+/* 메세지 색상 지정 */
+.confirm{ color : green; }
+.error{ color : red; }
+
+.formSection input {
 
   border: none;
   border-bottom: 1px solid #E2E8F0;
@@ -85,6 +89,12 @@
   margin-bottom: 8px;
   font-size: 14px;
   font-weight: bold;
+}
+
+h4{
+  color: rgb(226, 72, 33);
+  font-size: 14px;
+
 }
 
 .input-row {
@@ -139,4 +149,8 @@
   color: #4C4C4C;
   text-decoration: none;
   margin: 0 5px;
+}
+
+.signUp-message {
+  font-size: 13px;
 }

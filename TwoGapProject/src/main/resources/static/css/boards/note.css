@@ -89,9 +89,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80vw;
+  width: 1000px;
   max-width: 1200px;
-  height: 80vh;
+  height: 700px;
   max-height: 900px;
   background-color: white;
   z-index: 1002;
@@ -147,6 +147,18 @@
   text-align: left;
 }
 
+.content-textarea {
+  padding: 5px;
+  border: 2px solid black;
+  resize: none;
+  outline: none;
+  width: 100%;
+  height: 95%;
+  background-color: transparent;
+
+}
+
+
 /* 닫기 버튼 */
 #note-select-close {
   width: 20px;
@@ -174,7 +186,11 @@
 }
 
 .note-color {
-  
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 15px;
+  color: white;
+  border-radius: 5px;
 }
 
 .note-update-delete {
@@ -247,3 +263,29 @@
   .note-preview-list::-webkit-scrollbar-thumb:hover {
   background: #007096;
 } 
+
+
+
+.note-color-back {
+  background-color: #4CAF50;
+}
+
+#inputColor {
+  opacity: 0;
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.img-input {
+  margin-left: 10px;
+  padding: 3px;  border:none;
+  border-radius: 5px;
+  background-color: #007096;
+  color: white;
+  cursor: pointer;
+  &:hover {
+    background: rgb(89, 87, 194);
+    color: #fff;
+  }
+}

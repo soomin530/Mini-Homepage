@@ -7,7 +7,7 @@ testBox.append(noteContainer);
 let noteItemList = null;
 let noteItem = null;
 
-/** 강의 에재 메뉴판 js 참조
+/** 강의 예재 메뉴판 js 참조
  * 요소 생성 + 속성 추가 + 클래스 추가
  * @param {*} tag 요소
  * @param {*} attr 속성 - 스타일은 다른거임 잊지 말길 T.T
@@ -59,7 +59,7 @@ function noteSelect() {
 };
 
 
-// 메모장 만들기
+// 메모장 리스트 만들기
 function createNoteItemList(result) {
 
     noteItemList = document.querySelector(".note-item-list");
@@ -105,7 +105,8 @@ function createNoteItem(noteItemList, note) {
     const content = newEl("div", {} , []);
 
     hx.innerText = "No." + note['noteNo'];
-    content.innerText = note['noteContent'];
+    const contentText = note.noteContent;
+    content.innerText = `${contentText.length > 10 ? contentText.substr(0, 9) + "...": contentText }`;
     content.style.backgroundColor = note['noteColor'];
     
     noteItem.append(hx);
@@ -159,10 +160,13 @@ function select(note) {
 
     // 메모장 이미지
     const notePreview = newEl("div", {}, ["note-preview"]);
-    const previewDiv = newEl("div", {}, []); // 클래스 없음 헷갈리지 않기
+    const previewDiv = newEl("div", {}, ["previewDiv"]); // 클래스 없음 css 없음 헷갈리지 않기
     const notePreviewlist = newEl("div", {}, ["note-preview-list"]);
 
-    noteSelectContent.innerText = note['noteContent'];
+    // 10글자 넘을시 잘라서 보여주기
+    const contentText = note.noteContent;
+    noteSelectContent.innerHTML = `<span>${note.noteContent}</span>`;
+
     noteSelectClose.innerHTML = "&times;";
     noteSelectBox.style.backgroundColor = note['noteColor'];
     updateSpan.innerText = "수정";
@@ -208,14 +212,149 @@ function select(note) {
 
 
 
+
+
+
 // 메모장 수정 창으로 변경 이벤트
 const noteUpdate = note => {
 
-    console.log(note);
+    // 메모장 내용 textarea 변경
+    const noteSelectContent = document.querySelector(".note-select-content");
+    noteSelectContent.innerHTML = ""
+    contentTextarea = newEl("textarea", {maxlength: "1500"}, ['content-textarea']);
+
+    contentTextarea.innerText = note.noteContent;
+
+    noteSelectContent.append(contentTextarea);
+
+    // 메모장 색변경 버튼 추가
     let noteColor = document.querySelector(".note-color");
     noteColor.remove();
-    noteColor = newEl("input", {type: "color"}, ["note-color"]);
+    const noteColorLable = newEl("label", {for: "inputColor"}, ["note-color", "note-color-back"]);
+    const noteColorDiv = newEl("div", {}, []);
+    noteColor = newEl("input", {type: "color", id: 'inputColor'}, []);
+
+    noteColorLable.innerText = "메모장 색변경";
+
+    noteColorDiv.append(noteColorLable);
+    noteColorDiv.append(noteColor);
+    document.querySelector(".note-select-item").prepend(noteColorDiv);
+
+    // 수정 | 삭제  -> 확인 | 취소로 변경
+    const noteUpdaetDelete = document.querySelector(".note-update-delete");
+    noteUpdaetDelete.innerHTML = "";
+    
+    const confirmSpan = newEl("span", {cursor: "pointer"},[]);
+    const spaceP = newEl("p", {}, []);
+    const cancellSpan = newEl("span", {cursor: "pointer"},[]);
+
+    confirmSpan.innerText = "확인";
+    spaceP.innerText = "|";
+    cancellSpan.innerText = "취소";
+    
+    noteUpdaetDelete.append(confirmSpan);
+    noteUpdaetDelete.append(spaceP);
+    noteUpdaetDelete.append(cancellSpan);
+
+    // 사진 선택 버튼 추가
+    const previewDiv = document.querySelector(".previewDiv");
+    const noteImgInput = newEl("input", {
+        type: "file", id: "file-input", accept: "image/*", multiple: "true"/*, style: "display:none"*/
+    }, []);
+    const noteImgInputLable = newEl("label", {for: "file-input"}, ["img-input"]);
+
+    noteImgInputLable.innerText ="사진 선택";
+
+    noteImgInputLable.append(noteImgInput);
+    previewDiv.append(noteImgInputLable);
+
+
+
+    // 수정에서 일어날 이벤트 목록
+
+    // 이미지 담을 목록
+    let fileInputFiles = null; // 어차피 배열로 받음3
+
+
+    noteImgInput.addEventListener("change", e => {
+        fileInputFiles = noteImgPreview(e, fileInputFiles);
+    })
+
+    confirmSpan.addEventListener("click", () => {
+
+
+
+        const formData = new FormData();
+
+        for (const [i, photo] of Array.from(fileInputFiles).entries()) {
+            formData.append("images", photo);
+        }
+
+        formData.append('note', new Blob([JSON.stringify(note)] , {type: "application/json"}));
+
+        fetch("/note/update", {
+            method: "PUT",
+            // headers: {
+            //     "Content-Type": "multipart/form-data"
+            //   },
+            body: formData
+        })
+        .then(resp => resp.text())
+        .then(result => {
+            console.log("몰라");
+        });
+    }) 
 }
+
+
+
+function noteImgPreview(e, fileInputFiles) {
+    
+    const imgs = Array.from(e.target.files);
+    const leng = (fileInputFiles == null) ? Number('0') : fileInputFiles.length;
+
+    if((imgs.length + leng) > 5 ) {
+        alert("많아!");
+        e.preventDefault();
+        return;
+    }
+
+    if( leng > 0 ) {
+        fileInputFiles = [
+            ...fileInputFiles,
+            ...imgs
+          ]
+    } else {
+        fileInputFiles = imgs;
+    }
+
+    for( let img of imgs) {
+        let newImageUrl = URL.createObjectURL(img);
+
+        const createImg = newEl("img", {}, []);
+        createImg.src = newImageUrl;
+
+        const notePreviewList = document.querySelector(".note-preview-list");
+        notePreviewList.append(createImg);    
+    }
+
+    return fileInputFiles;
+}
+
+function mergeObj(obj1, obj2) {
+    const newObj = {};
+    for (let att in obj1) { 
+      newObj[att] = obj1[att]; 
+      console.log(newObj);
+    }
+  
+    for(let att in obj2)  {
+      newObj[att] = obj2[att];
+      console.log(newObj);
+    }
+    
+    return newObj;
+  }
     
 // 메모장 조회 - 시작할때 같이 동작되야함
 noteSelect();
