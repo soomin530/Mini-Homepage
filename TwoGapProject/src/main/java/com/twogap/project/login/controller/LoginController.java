@@ -130,14 +130,6 @@ public class LoginController {
 	 * @author 우수민
 	 */
 	@PostMapping("signup")
-<<<<<<< Updated upstream
-	public String signup(/*@ModelAttribute*/ Member inputMember, // 비동기가 아니기 때문에 반환형 String.
-						@RequestParam("Address")String[] memberAdress,
-						RedirectAttributes ra) { 
-		
-		// 회원가입 서비스 호출
-		int result = service.signup(inputMember, memberAdress); // ^^^로 바꾸는 데이터 가공 일어남
-=======
 	public String submit(/*@ModelAttribute*/ Member inputMember, 
 						@RequestParam("memberAdress")String[] memberAdress,
 						@RequestParam("memberTel")String[] memberTel,
@@ -146,7 +138,6 @@ public class LoginController {
 		
 		// 회원가입 서비스 호출
 		int result = service.submit(inputMember, memberAdress, memberTel, memberHomeTel); // 데이터 가공 
->>>>>>> Stashed changes
 		
 		String path = null;
 		String message = null;

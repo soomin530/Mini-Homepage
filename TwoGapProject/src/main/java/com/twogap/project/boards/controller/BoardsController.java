@@ -45,11 +45,23 @@ public class BoardsController {
 		member.setAlertContent(textContent);
 		int result = service.alertUpdate(member);
 		return result;
+		 
+	}
+	
+
+	/** 프로필 이미지 변경 화면 이동
+	 * @return
+	 * @author 우수민
+	 */
+	@GetMapping("profile-update") //   /boards/profile  GET 방식 요청
+	public String updateProfile() {
 		
+			return "/boards/profile-update"; 
+		}
 	}
 	
 	
 	
 	
 	
-}
+
