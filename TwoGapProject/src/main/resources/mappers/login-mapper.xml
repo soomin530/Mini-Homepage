@@ -55,5 +55,5 @@
 			NULL						<!-- 자기소개 -->
 		)
 	 </insert>
-	
+
 </mapper>

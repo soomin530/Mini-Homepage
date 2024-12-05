@@ -100,7 +100,6 @@ public class LoginServiceImpl implements LoginService {
 			inputMember.setMemberHomeTel(homeTel);
 		} else {
 			inputMember.setMemberHomeTel(null);
-
 		}
 		
 		String encPw = bcrypt.encode(inputMember.getMemberPw());

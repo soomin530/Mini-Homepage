@@ -232,7 +232,6 @@
   .friend-box button {
     width: 80px;
     height: 35px;
-    background: #CDE3EE;
     border-radius: 10px;
   
     border: 0px;
@@ -558,6 +557,8 @@ body {
   cursor: pointer;
 }
 
-/* div {
-    border: 1px solid;
-} */
+
+/* 숨기기위한 용도로 만듬  */
+.hidden {
+  display : none;
+}
