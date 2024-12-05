@@ -1,5 +1,9 @@
 package com.twogap.project.login.model.service;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -70,25 +74,40 @@ public class LoginServiceImpl implements LoginService {
 
 	// 회원 가입
 	@Override
-<<<<<<< Updated upstream
-	public int signup(Member inputMember, String[] memberAdress) {
-//		전화번호도 잊지 않고 다시 이어주기
-//		핸드폰 주민등록번호도
-=======
-	public int submit(Member inputMember, String[] memberAdress, String[] memberTel, String[] memberHomeTel) {
-
+	public int submit(Member inputMember, String[] memberAddress, String[] memberTel,
+			String[] memberHomeTel, String[] memberEmail, String[] personalCode) {
+		
 		// 주소
->>>>>>> Stashed changes
-		if(!inputMember.getMemberAdress().equals(",,")) {
-			String address = String.join("^^^", memberAdress);
+		if(!inputMember.getMemberAddress().equals(",,")) {
 			
-			inputMember.setMemberAdress(address);
+			String address = String.join("^^^", memberAddress);
+			
+			inputMember.setMemberAddress(address);
+			
 		} else {
-			inputMember.setMemberAdress(null);
-<<<<<<< Updated upstream
-=======
+			
+			inputMember.setMemberAddress(null);
 		}
 		
+		// 이메일
+		if(!inputMember.getMemberEmail().equals(",")) {
+			String email = String.join("@", memberEmail);
+			
+			inputMember.setMemberEmail(email);
+			
+		} else {
+			
+			inputMember.setMemberEmail(null);
+			
+		}
+		
+		// 주민등록번호
+		if(!inputMember.getPersonalCode().equals(",")) {
+			String psCode = String.join("-", personalCode);
+			inputMember.setPersonalCode(psCode); 
+		} else {
+			inputMember.setPersonalCode(null);
+		}
 		
 		// 핸드폰 번호
 		if(!inputMember.getMemberTel().equals(",")) {
@@ -105,7 +124,6 @@ public class LoginServiceImpl implements LoginService {
 			inputMember.setMemberHomeTel(homeTel);
 		} else {
 			inputMember.setMemberHomeTel(null);
->>>>>>> Stashed changes
 		}
 		
 		String encPw = bcrypt.encode(inputMember.getMemberPw());
@@ -113,4 +131,61 @@ public class LoginServiceImpl implements LoginService {
 		
 		return mapper.submit(inputMember);
 	}
+
+
+	// 아이디 찾기
+	@Override
+	public Member findId(Member inputmember, String[] memberEmail) {
+		
+		if(!inputmember.getMemberEmail().equals(",")) {
+			String email = String.join("@", memberEmail);
+			
+			inputmember.setMemberEmail(email);
+		
+			
+		} else {
+			
+			inputmember.setMemberEmail(null);
+			
+		}
+		
+		return mapper.findId(inputmember);
+	}
+
+
+	// 변경된 비밀번호 적용
+	@Override
+	public int updatePw(String memberId, String memberPw) {
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("memberId", memberId);
+		String encPw = bcrypt.encode(memberPw);
+		map.put("memberPw", encPw);
+		
+		int result = mapper.updatePw(map);
+
+		return result;
+	}
+
+
+	// 아이디 이메일 매치 확인
+	@Override
+	public int matchInput(Member inputmember, String memberId, String[] memberEmail) {
+		
+		if(!inputmember.getMemberEmail().equals(",")) {
+			String email = String.join("@", memberEmail);
+			
+			inputmember.setMemberEmail(email);
+			inputmember.setMemberId(memberId);
+		
+			
+		} else {
+			
+			inputmember.setMemberEmail(null);
+			
+		}
+		
+		return mapper.matchInput(inputmember);
+	}
+
 }
