@@ -83,10 +83,12 @@ public class LoginServiceImpl implements LoginService {
 			String address = String.join("^^^", memberAddress);
 			
 			inputMember.setMemberAddress(address);
+
 			
 		} else {
 			
 			inputMember.setMemberAddress(null);
+
 		}
 		
 		// 이메일

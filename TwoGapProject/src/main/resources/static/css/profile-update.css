@@ -137,6 +137,7 @@ body {
 
 }
 
+<<<<<<< HEAD
 .profile-image-area{
   margin-top: 35px;
   width: 110px;
@@ -165,6 +166,8 @@ form[name='myPageFrm']{position: relative;}
 }
 
 
+=======
+>>>>>>> ec6b46d50e519c06492b1bfe7843f55a8fb29585
 /* 프로필 */
 .profile {
   flex-basis: 33%;
@@ -175,10 +178,34 @@ form[name='myPageFrm']{position: relative;}
   flex-direction: column;
 }
 
+<<<<<<< HEAD
 .profile-info {
   margin-top: 20px;
 }
 
+=======
+.profile div {
+  border: 1px solid;
+}
+
+.profile-test {
+  flex-basis: 44%;
+}
+
+.profile-img {
+
+}
+
+.profile-nickname {
+
+}
+
+/* .input-info{
+  width: 300px;
+  border-bottom: 1px solid;
+} */
+
+>>>>>>> ec6b46d50e519c06492b1bfe7843f55a8fb29585
 .form-group label {
   display: block;
   margin-bottom: 8px;
@@ -186,6 +213,12 @@ form[name='myPageFrm']{position: relative;}
   font-weight: bold;
 }
 
+<<<<<<< HEAD
+=======
+.profile-edit {
+}
+
+>>>>>>> ec6b46d50e519c06492b1bfe7843f55a8fb29585
 .profile-introduction {
   flex-basis: 56%;
 }
@@ -195,8 +228,11 @@ form[name='myPageFrm']{position: relative;}
   height: 100px;
   resize: none;
   overflow: hidden;
+<<<<<<< HEAD
   line-height: 20px;
   letter-spacing:2px
+=======
+>>>>>>> ec6b46d50e519c06492b1bfe7843f55a8fb29585
 }
 
 
@@ -250,6 +286,7 @@ body {
   overflow: hidden;
 }
 
+<<<<<<< HEAD
 .imageInput{
   padding: 7px 10px;
   background-color: #E5EAEC;
@@ -261,6 +298,15 @@ body {
 }
 
 
+=======
+.a{
+  margin-left: 15px;
+}
+
+
+
+
+>>>>>>> ec6b46d50e519c06492b1bfe7843f55a8fb29585
 .profile-edit-img {
   margin-top: 10px;
   width: 100px;
@@ -272,6 +318,7 @@ body {
   margin-top: 20px;
 }
 
+<<<<<<< HEAD
 /* 삭제버튼 */
 form[name='myPageFrm']{position: relative;}
 
@@ -287,6 +334,23 @@ form[name='myPageFrm']{position: relative;}
   margin-left: 240px;
   font-size: 15px;
   margin-bottom: 20px;
+=======
+.profile-picture label{
+  padding: 7px 10px;
+  background-color: #E5EAEC;
+  color: #6a6a6a;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+
+}
+
+.color {
+  margin-top: 100px;
+  margin-left: 240px;
+  font-size: 15px;
+>>>>>>> ec6b46d50e519c06492b1bfe7843f55a8fb29585
 }
 
 .color-button {
@@ -298,6 +362,12 @@ form[name='myPageFrm']{position: relative;}
   cursor: pointer;
 }
 
+<<<<<<< HEAD
+=======
+/* .profile-info {
+  margin-top: 20px;
+} */
+>>>>>>> ec6b46d50e519c06492b1bfe7843f55a8fb29585
 
 .input-info {
   border-bottom-style: 1px solid black;
@@ -318,8 +388,12 @@ form[name='myPageFrm']{position: relative;}
 }
 
 .introduction {
+<<<<<<< HEAD
   margin-top: 40px;
   line-height: 50px;
+=======
+  margin-top: 100px;
+>>>>>>> ec6b46d50e519c06492b1bfe7843f55a8fb29585
 }
 
 .introduction-button{
@@ -337,4 +411,18 @@ form[name='myPageFrm']{position: relative;}
 
 /* 메세지 색상 지정 */
 .confirm{ color : green; }
+<<<<<<< HEAD
 .error{ color : red; }
+=======
+.error{ color : red; }
+
+
+
+
+
+
+
+
+
+
+>>>>>>> ec6b46d50e519c06492b1bfe7843f55a8fb29585

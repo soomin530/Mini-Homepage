@@ -34,7 +34,12 @@
 		WHERE MEMBER_DEL_FL = 'N'
 		AND MEMBER_NICKNAME = #{memberNickname}
 	 </select>
+<<<<<<< HEAD
 	 
+=======
+
+	<!-- 회원 가입 -->
+>>>>>>> ec6b46d50e519c06492b1bfe7843f55a8fb29585
 	 <insert id="submit">
 	 	INSERT INTO "MEMBER" VALUES
 		( 
@@ -46,7 +51,11 @@
 			DEFAULT,					<!-- 탈퇴여부 -->
 			#{memberTel},				<!-- 휴대폰 -->
 			#{memberTel},				<!-- 집전화-->
+<<<<<<< HEAD
 			#{memberAddress},			<!-- 주소 -->
+=======
+			#{memberTel},				<!-- 주소 -->
+>>>>>>> ec6b46d50e519c06492b1bfe7843f55a8fb29585
 			NULL,						<!-- 프로필 경로 -->
 			#{personalCode},			<!-- 주민번호(야매) -->
 			DEFAULT,					<!-- 홈페이지 배경색 -->
@@ -54,6 +63,7 @@
 			NULL						<!-- 자기소개 -->
 		)
 	 </insert>
+<<<<<<< HEAD
 	 
 	 <!-- 아이디 찾기 -->
 	 <select id="findId">
@@ -76,4 +86,7 @@
 	 	MEMBER_PW = #{memberPw}
 	 	WHERE MEMBER_ID = #{memberId}
 	 </update>
+=======
+
+>>>>>>> ec6b46d50e519c06492b1bfe7843f55a8fb29585
 </mapper>
