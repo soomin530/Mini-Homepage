@@ -9,6 +9,7 @@ import java.util.Map;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.twogap.project.boards.model.dto.BoardsImg;
@@ -23,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@Transactional(rollbackFor=Exception.class) 
 public class NoteServiceImpl implements NoteService{
 	
 	private final NoteMapper mapper;
