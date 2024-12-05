@@ -34,6 +34,7 @@
 		WHERE MEMBER_DEL_FL = 'N'
 		AND MEMBER_NICKNAME = #{memberNickname}
 	 </select>
+	 
 
 
 	<!-- 회원 가입 -->
