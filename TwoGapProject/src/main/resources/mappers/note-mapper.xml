@@ -2,11 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.twogap.project.note.model.mapper.NoteMapper">
 
+	<!-- 게시글 수 세기-->
 	<select id="getNoteListCount">
 		SELECT COUNT(*) FROM "NOTE"
 		WHERE MEMBER_NO = #{memberNo}	
 	</select>
 
+	<!-- noteList 조회용 쿼리 -->
 	<select id="noteSelectList">
 		SELECT 
 		
@@ -23,4 +25,111 @@
 		ORDER BY 1 DESC
 	</select>
 	
+	<!-- 상세조회 시 이미지 정보 얻어오기 -->
+	<select id="noteSelectImg">
+		SELECT * FROM IMG 
+		WHERE IMG_BOARD_NO = #{imgBoardNo}
+		AND BOARD_TYPE_NO = '4'
+		ORDER BY 5
+	</select>
+	
+	<!-- Note insert -->
+	<insert id="noteInsert" useGeneratedKeys="true" parameterType="Note">
+		<selectKey order="BEFORE" resultType="_int" keyProperty="noteNo">
+			SELECT NOTE_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO "NOTE"	VALUES(
+			   #{noteNo},
+			   #{noteContent},
+			   #{noteColor},
+			   DEFAULT, 
+			   NULL,
+			   #{memberNo},
+			   DEFAULT
+		)
+	
+	</insert>
+	
+	
+	<!-- Note Img DB 정보 저장 -->
+	<insert id="insertUploadList" parameterType="list">
+		INSERT INTO "IMG"
+		
+		<foreach collection="list" item="img"
+				 open="(" close=")" separator=" UNION ">
+			 SELECT NEXT_IMG_NO(),
+			 #{img.imgPath},
+			 #{img.imgOriginalName},
+			 #{img.imgRename},
+			 #{img.imgOrder},
+			 #{img.imgBoardNo},
+			 #{img.boardTypeNo}
+			 FROM DUAL
+		
+		
+		</foreach>
+		
+	</insert>
+	
+	<update id="noteUpdate">
+		UPDATE "NOTE" SET
+		NOTE_COLOR = #{noteColor},
+		NOTE_CONTENT = #{noteContent}
+		WHERE NOTE_NO = #{noteNo}
+		AND BOARD_TYPE_NO = #{boardTypeNo}
+	</update>
+	
+	
+	<!-- 메모글 삭제 -->
+	<delete id="noteDelete">
+		DELETE FROM NOTE
+		WHERE Note_NO = #{noteNo}
+	</delete>
+	
+	
+	<!-- 삭제할 메모글의 이미지 수 -->
+	<select id="getNoteImg" resultType="integer">
+		SELECT COUNT(*) "count" FROM IMG
+		WHERE IMG_BOARD_NO = #{noteNo}
+		AND BOARD_TYPE_NO = #{boardTypeNo}
+	</select>
+	
+	<!-- 이미지 삭제 -->
+	<delete id="noteImgDelete">
+		DELETE FROM IMG
+		WHERE IMG_BOARD_NO = #{noteNo}
+		AND BOARD_TYPE_NO = #{boardTypeNo}
+	</delete>
+	
+	<!-- 이미지 개별 업데이트 적용 -->
+	<update id="updateImg">
+		UPDATE "IMG" SET
+			IMG_PATH = #{imgPath},
+			IMG_ORIGINAL_NAME = #{imgOriginalName},
+			IMG_RENAME = #{imgRename}
+		
+		WHERE IMG_BOARD_NO = #{imgBoardNo}
+		AND BOARD_TYPE_NO = #{boardTypeNo}
+		AND IMG_ORDER = #{imgOrder}
+	</update>
+	
+	<!-- 이미지 개별 삽입 적용 -->
+	<insert id="insertImg">
+		INSERT INTO "IMG" VALUES(
+		NEXT_IMG_NO(),
+		 #{imgPath},
+		 #{imgOriginalName},
+		 #{imgRename},
+		 #{imgOrder},
+		 #{imgBoardNo},
+		 #{boardTypeNo})
+	</insert>
+	
+	<!-- 이미지 개별 삭제 적용 -->
+	<delete id="deleteImg">
+		DELETE FROM IMG
+		WHERE IMG_BOARD_NO = #{imgBoardNo}
+		AND BOARD_TYPE_NO = #{boardTypeNo}
+		AND IMG_ORDER = #{imgOrder}
+	</delete>
 </mapper>

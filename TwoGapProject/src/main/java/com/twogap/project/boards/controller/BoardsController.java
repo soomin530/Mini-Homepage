@@ -48,6 +48,15 @@ public class BoardsController {
 		
 	}
 	
+	@GetMapping("main")
+	public String returnAlert() {
+		return "boards/main";
+		
+	}
+	
+	
+	
+	
 	
 	
 	

@@ -70,23 +70,15 @@ public class LoginServiceImpl implements LoginService {
 
 	// 회원 가입
 	@Override
-<<<<<<< Updated upstream
-	public int signup(Member inputMember, String[] memberAdress) {
-//		전화번호도 잊지 않고 다시 이어주기
-//		핸드폰 주민등록번호도
-=======
 	public int submit(Member inputMember, String[] memberAdress, String[] memberTel, String[] memberHomeTel) {
 
 		// 주소
->>>>>>> Stashed changes
 		if(!inputMember.getMemberAdress().equals(",,")) {
 			String address = String.join("^^^", memberAdress);
 			
 			inputMember.setMemberAdress(address);
 		} else {
 			inputMember.setMemberAdress(null);
-<<<<<<< Updated upstream
-=======
 		}
 		
 		
@@ -105,7 +97,6 @@ public class LoginServiceImpl implements LoginService {
 			inputMember.setMemberHomeTel(homeTel);
 		} else {
 			inputMember.setMemberHomeTel(null);
->>>>>>> Stashed changes
 		}
 		
 		String encPw = bcrypt.encode(inputMember.getMemberPw());
