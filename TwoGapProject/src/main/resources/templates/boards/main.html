@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://kit.fontawesome.com/4d970bf746.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/boards/main.css">
+  
+
+</head>
+
+<body>
+  <div class="homepage-container">
+
+    <th:block th:replace="~{base/menubar}"></th:block>
+
+    <div class="homepage">
+
+      <div class="center-box">
+        <div class="logo"></div>
+        <div class="self-box">
+        <textarea readonly="true" class="self-box2"></textarea>
+        </div>
+
+
+    </div>
+
+
+
+
+      <th:block th:replace="~{base/rightbox}"></th:block>
+
+    </div>
+
+  </div>
+
+  <input type="text" id="memberNo" th:value="${session.loginMember.memberNo}" hidden>
+  <script src="/js/main.js"></script>
+  <script src="/js/base.js"></script>
+
+
+
+</body>
+
+</html>
