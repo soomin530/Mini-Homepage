@@ -29,5 +29,8 @@ public class Member {
 	private String authority;
 	private String introduction;
 	private String alertContent;
+	
+	// 팔로우 상태 이용 변수
+	private int followState;
 }
 

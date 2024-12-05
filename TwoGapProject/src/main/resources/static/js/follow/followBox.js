@@ -101,7 +101,6 @@ function createSearchItem(searchList) {
     const followSearchItem = newEl("div", {}, ["follow-search-item"]);
     const followSearchInfo = newEl("div", {}, ["follow-search-info"]);
     const followSearchButton = newEl("button", {}, ["follow-search-button", "following"]);
-    followSearchButton.innerText = "팔로우";
 
     const followSearchImage = newEl("div", {}, ["follow-search-image"]);
     const profileSrc = searchUser.profileImg === null ? "/images/user.jpg": searchUser.profileImg;
@@ -115,8 +114,55 @@ function createSearchItem(searchList) {
     followSearchInfo.append(followSearchImage);
     followSearchInfo.append(followSearchName);
     followSearchImage.append(profileImg);
+
+    switch (searchUser.followState) {
+      case 1:case 2:
+        
+        followSearchButton.innerHTML = "<i class='fa-solid fa-user-minus'></i>";
+        followSearchButton.onclick = () => nofollowEvent(searchUser.memberNo);
+        break;
+
+      case 3: case 4:
+        followSearchButton.innerHTML = "<i class='fa-solid fa-user-plus'></i>";
+        followSearchButton.onclick = () => addfollowEvent(searchUser.memberNo);
+        break;
+
+      default:
+        alert("시스템 문제 발생 저희에게 문의 해주세요");
+    }
   }
 }
 
 // testBox 생성
 followBox();
+
+// 언팔 이벤트 
+function nofollowEvent(memberNo) {
+
+  fetch("/follow/unFollow", {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(memberNo)
+  })
+  .then(resp => resp.text())
+  .then(result => {
+    alert("팔로우를 해제했습니다");
+    following.innerHTML = "<i class='fa-solid fa-user-plus'></i>";
+  })
+}
+
+function addfollowEvent(memberNo) {
+
+  fetch("/follow/addFollow", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(memberNo)
+    }
+  )
+  .then(resp => resp.text())
+  .then(result => {
+    alert("팔로우를 추가했습니다");
+    following.innerHTML = "<i class='fa-solid fa-user-minus'></i>";
+  })
+
+}

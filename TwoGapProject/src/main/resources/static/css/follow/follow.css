@@ -272,8 +272,8 @@
 }
 
 .follow-search-button.following {
-  background-color: #e0e0e0;
-  color: #666;
+  background-color: #007096;
+  color: white;
 }
 
 .follow-search-button:hover {
@@ -298,3 +298,4 @@
 .search-user-list::-webkit-scrollbar-thumb:hover {
   background: #007096;
 }
+

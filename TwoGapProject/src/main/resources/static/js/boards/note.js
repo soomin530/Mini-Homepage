@@ -466,7 +466,7 @@ const modifyNote = note => {
     const noteColorDiv = newEl("div", {}, []);
     noteColorInput = newEl("input", {type: "color", id: 'inputColor', value:"#FFFFFF"}, []);
 
-    noteColorLable.innerText = "메모장 색변경";
+    noteColorLable.innerHTML = "메모장 색변경<i class='fa-solid fa-pen'></i>";
 
     noteColorDiv.append(noteColorLable);
     noteColorDiv.append(noteColorInput);
