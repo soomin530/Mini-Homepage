@@ -79,6 +79,7 @@ public class LoginServiceImpl implements LoginService {
 			inputMember.setMemberAdress(address);
 		} else {
 			inputMember.setMemberAdress(null);
+
 		}
 		
 		

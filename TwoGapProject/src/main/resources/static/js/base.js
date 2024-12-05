@@ -91,11 +91,11 @@ function pagination(pagination, boardTypeNo) {
         break;
 
       case 4:
-        page.addEventListener("click", e => noteSelectCp(e));
+        page.addEventListener("click", e => noteSelectCp(e.target.value));
         break;
 
       default:
-        statement3;
+        alert("시스템 문제 발생 저희에게 문의 해주세요");
     }
     // 페이지 이동 요청 이벤트
   }
