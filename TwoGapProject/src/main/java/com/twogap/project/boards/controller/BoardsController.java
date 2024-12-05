@@ -73,7 +73,6 @@ public class BoardsController {
 		return service.checkNickname(memberNickname);
 	}
 	
-<<<<<<< HEAD
 	@GetMapping("main")
 	public String returnAlert() {
 		return "boards/main";
@@ -87,8 +86,6 @@ public class BoardsController {
 	
 	
 	
-}
-=======
 
 	// 프로필 변경사항 제출
 	@PostMapping("application")
@@ -119,4 +116,3 @@ public class BoardsController {
 	}
 
 }	
->>>>>>> 92c22bfd05f04515f5669f489ec4d7883bd08667

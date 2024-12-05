@@ -86,14 +86,10 @@ public class LoginServiceImpl implements LoginService {
 
 			
 		} else {
-<<<<<<< HEAD
-			inputMember.setMemberAdress(null);
-=======
 			
 			inputMember.setMemberAddress(null);
 
 
->>>>>>> 92c22bfd05f04515f5669f489ec4d7883bd08667
 		}
 		
 		// 이메일
@@ -138,9 +134,6 @@ public class LoginServiceImpl implements LoginService {
 		
 		return mapper.submit(inputMember);
 	}
-<<<<<<< HEAD
-}
-=======
 
 
 	// 아이디 찾기
@@ -199,4 +192,3 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 }
->>>>>>> 92c22bfd05f04515f5669f489ec4d7883bd08667

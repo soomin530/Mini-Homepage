@@ -34,13 +34,10 @@
 		WHERE MEMBER_DEL_FL = 'N'
 		AND MEMBER_NICKNAME = #{memberNickname}
 	 </select>
-<<<<<<< HEAD
 	 
-=======
 
 
 	<!-- 회원 가입 -->
->>>>>>> 92c22bfd05f04515f5669f489ec4d7883bd08667
 	 <insert id="submit">
 	 	INSERT INTO "MEMBER" VALUES
 		( 
