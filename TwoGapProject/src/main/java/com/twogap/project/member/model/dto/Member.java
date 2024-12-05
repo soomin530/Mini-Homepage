@@ -26,7 +26,6 @@ public class Member {
 	private String profileImg;
 	private String backgroundColor;
 	private String personalCode;
-	private String backgroudColor;
 	private String authority;
 	private String introduction;
 	private String alertContent;

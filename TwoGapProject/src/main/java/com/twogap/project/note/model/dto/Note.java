@@ -1,5 +1,9 @@
 package com.twogap.project.note.model.dto;
 
+import java.util.List;
+
+import com.twogap.project.boards.model.dto.BoardsImg;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,4 +25,6 @@ public class Note {
 	private String noteUpdateDate;
 	private int memberNo;
 	private int boardTypeNo;
+	
+	private List<BoardsImg> imageList;
 }

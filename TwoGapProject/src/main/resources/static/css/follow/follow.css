@@ -1,0 +1,300 @@
+.follow-container {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: start  ;
+}
+
+.follow-container > span {
+  margin: 0px 40px;
+  font-size: 40px;
+  font-weight: bolder;
+}
+
+/* 팔로우 검색 창 */
+.search-section {
+  padding: 1rem 0;
+}
+
+.search-box {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-input {
+  width: 70%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #CDE3EE;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: #007096;
+}
+
+.search-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #007096;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.search-button:hover {
+  background-color: #005d7f;
+}
+
+
+/* 구분선 */
+.divider {
+  width: 100%;
+  height: 2px;
+  background-color: #CDE3EE;
+  margin: 1rem 0;
+}
+
+
+/* 팔로우 상태 표시 */
+.follow-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.tab {
+  border: none;
+  background: none;
+  font-size: 1rem;
+  color: #666;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+  flex: 1;
+  text-align: center;
+}
+
+.tab.active {
+  color: #007096;
+  border-bottom: 2px solid #007096;
+  font-weight: 600;
+}
+
+.tab:nth-child(2) {
+  border-left: 2px solid #8fc5e0;
+  border-right: 2px solid #8fc5e0;
+}
+
+
+/* 팔로우 이미지, 닉네임, 친구*/
+.follow-list-container {
+  display: flex;
+  overflow-y: auto;
+}
+
+.follow-list {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 1rem;
+  max-height: 400px;
+
+}
+
+.follow-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.follow-item:hover {
+  background-color: #f5f5f5;
+}
+
+.follow-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.follow-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.follow-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.follow-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.follow-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: #007096;
+  color: white;
+}
+
+.follow-button.following {
+  background-color: #e0e0e0;
+  color: #666;
+}
+
+.follow-button:hover {
+  opacity: 0.9;
+}
+
+/* 스크롤바 스타일링 */
+.profile-list-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.profile-list-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.profile-list-container::-webkit-scrollbar-thumb {
+  background: #CDE3EE;
+  border-radius: 4px;
+}
+
+.profile-list-container::-webkit-scrollbar-thumb:hover {
+  background: #007096;
+}
+
+
+
+
+
+/* 검색 후 유저 리스트 css */
+.search-user-list{
+  width: 100%;
+  height: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  overflow-y: auto;
+  
+}
+
+
+/* 고민중 */
+/* .result-box {
+  width: 300px;
+  height: 300px;
+  margin: 2rem;
+  
+  background-color: #CDE3EE;
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+} */
+
+
+.follow-search-item {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.follow-search-item:hover {
+  background-color: #f5f5f5;
+}
+
+.follow-search-info {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.follow-search-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.follow-search-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.follow-search-name {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.follow-search-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: #007096;
+  color: white;
+}
+
+.follow-search-button.following {
+  background-color: #e0e0e0;
+  color: #666;
+}
+
+.follow-search-button:hover {
+  opacity: 0.9;
+}
+
+/* 스크롤바 스타일링 */
+.search-user-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.search-user-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.search-user-list::-webkit-scrollbar-thumb {
+  background: #CDE3EE;
+  border-radius: 4px;
+}
+
+.search-user-list::-webkit-scrollbar-thumb:hover {
+  background: #007096;
+}
