@@ -89,6 +89,7 @@ public class LoginServiceImpl implements LoginService {
 			
 			inputMember.setMemberAddress(null);
 
+
 		}
 		
 		// 이메일

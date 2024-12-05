@@ -18,7 +18,7 @@
 	<insert id="insertAlert">
 		INSERT INTO "ALERT" VALUES
 		( 
-			#{memberNo},
+			${memberNo},
 			#{alertContent},
 			DEFAULT
 		)

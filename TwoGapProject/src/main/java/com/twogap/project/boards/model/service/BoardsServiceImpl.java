@@ -6,9 +6,11 @@ import com.twogap.project.boards.model.mapper.BoardsMapper;
 import com.twogap.project.member.model.dto.Member;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BoardsServiceImpl implements BoardsService {
 
 	private final BoardsMapper mapper;
@@ -21,11 +23,13 @@ public class BoardsServiceImpl implements BoardsService {
 	@Override
 	public int alertUpdate(Member member) {
 		
-		int result =  mapper.updateAlert(member);
+		int result = mapper.updateAlert(member);
+		
+		log.debug(member.getAlertContent());
 		
 		if( result == 0) {
 			result= mapper.insertAlert(member);
-		};
+		}
 		
 		return result;
 	}
