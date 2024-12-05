@@ -72,7 +72,7 @@ function createNoteItemList(result) {
     }
 
     // 페이지 네이션 출력 - base.js에 있습니다
-    pagination(result['pagination']);
+    pagination(result['pagination'], 4);
 
 }
 

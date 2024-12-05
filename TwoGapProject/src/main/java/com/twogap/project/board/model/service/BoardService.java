@@ -13,6 +13,30 @@ public interface BoardService {
 	 */
 	Map<String, Object> boardSelectList(int memberNo, int cp);
 	
+
+	/** 게시글 수정하기
+	 * @param board
+	 * @return
+	 */
+	int updateBoard(Board board);
+	
+	
+
+	/** 게시글 삭제하기
+	 * @param board
+	 * @return
+	 */
+	int deleteBoard(Board board);
+
+
+	/** 게시글 작성
+	 * @param board
+	 * @return
+	 */
+	int insertBoard(Board board);
+
+
+	
 	
 
 	

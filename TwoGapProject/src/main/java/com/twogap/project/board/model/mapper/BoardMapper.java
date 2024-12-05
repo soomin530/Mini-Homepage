@@ -23,5 +23,26 @@ public interface BoardMapper {
 	 */
 	List<Board> boardSelectList(int memberNo, RowBounds rowBounds);
 
+	/** 게시글 수정하기
+	 * @param board
+	 * @return
+	 */
+	int boardUpdate(Board board);
+	
+
+	/** 게시글 삭제하기
+	 * @param board
+	 * @return
+	 */
+	int boardDelete(Board board);
+
+	/** 게시글 작성
+	 * @param board
+	 * @return
+	 */
+	int insertBoard(Board board);
+
+	
+
 
 }

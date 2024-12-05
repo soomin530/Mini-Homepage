@@ -46,6 +46,9 @@
     color: #495057;
     border-top: 1px solid #dee2e6;
     border-bottom: 1px solid #dee2e6;
+
+    
+    text-align: center;
 }
 
 .boardList-table td {
@@ -67,6 +70,15 @@
 .boardList-table .boardList-number-column {
     width: 70px;
     text-align: center;
+}
+
+/*수정*/
+.boardDetail-post-title {
+    border-width: 0;
+}
+
+.boardDetail-post-content {
+    border-width: 0;
 }
 
 

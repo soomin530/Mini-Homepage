@@ -27,6 +27,11 @@ public class NoteController {
 	
 	private final NoteService service;
 	
+	@GetMapping("main")
+	public String noteMain() {
+		return "boards/note";
+	}
+	
 	/** Note 게시글 가져오기
 	 * @param memberNo
 	 * @return List<Note>
@@ -40,6 +45,7 @@ public class NoteController {
 		log.debug("cp : " + cp);
 		// noteList 결과 받아오기
 		Map<String, Object> map = service.noteSelectList(loginMember.getMemberNo(), cp);
+		
 		 
 		return map;
 	}
