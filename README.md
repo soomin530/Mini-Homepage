@@ -1,4 +1,4 @@
-## 개발 팀 소개
+## 🐡 Our Team 
 
 <table>
   <tr height="205px">
