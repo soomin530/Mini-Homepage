@@ -109,7 +109,7 @@
  │     │  │  ├─    profile-update.css
  │     │  │  ├─    signOut.css
  │     │  │  ├─    signUp.css
- │     │  │  ├─    signUpNotice.css
+ │     │  │  └─    signUpNotice.css
  │     │  ├─ 📂images
  │     │  ├─ 📂js
  │     │  │  ├─ 📂boards
@@ -125,7 +125,7 @@
  │     │  │  ├─    profile-update.js
  │     │  │  ├─    pwChange.js
  │     │  │  ├─    signOut.js
- │     │  │  ├─    signUp.js
+ │     │  │  └─    signUp.js
  │     ├─ 📜application.properties
  │     ├─ 📜config.properties
  │     ├─ 📜messages.properties
