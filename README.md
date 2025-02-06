@@ -67,3 +67,68 @@
 
 <br />
 
+## 📂 폴더 구조
+
+```
+📦src
+ ├─ 📂main/java/
+ │  ├─ 📂com.twogap.project
+ │  │   ├─ 📂board
+ │  │   ├─ 📂boards
+ │  │   ├─ 📂common
+ │  │   │  ├─ 📂config
+ │  │   │  ├─ 📂filter
+ │  │   │  └─ 📂util
+ │  │   ├─ 📂email
+ │  │   ├─ 📂follow
+ │  │   ├─ 📂login
+ │  │   ├─ 📂member
+ │  │   ├─ 📂note
+ │  │   ├─ 📂photo
+ │  │   ├─ 📂visitor
+ │  │   ├─ 📂MainController.java
+ │  │   └─ 📂TwoGapProjectApplication
+ │  └─ 📂resources
+ │     ├─ 📂mappers
+ │     ├─ 📂templates
+ │     │  ├─ 📂base
+ │     │  ├─ 📂boards
+ │     │  ├─ 📂email
+ │     │  ├─ 📂follow
+ │     │  └─ 📂member
+ │     ├─ 📂static
+ │     │  ├─ 📂css
+ │     │  │  ├─ 📂boards
+ │     │  │  └─ 📂follow
+ │     │  │  ├─    base.css
+ │     │  │  ├─    changePw.css
+ │     │  │  ├─    findId.css
+ │     │  │  ├─    findPw.css
+ │     │  │  ├─    login.css
+ │     │  │  ├─    privacyInfo-uadate.css
+ │     │  │  ├─    profile-update.css
+ │     │  │  ├─    signOut.css
+ │     │  │  ├─    signUp.css
+ │     │  │  ├─    signUpNotice.css
+ │     │  ├─ 📂images
+ │     │  ├─ 📂js
+ │     │  │  ├─ 📂boards
+ │     │  │  └─ 📂follow
+ │     │  │  ├─    base.js
+ │     │  │  ├─    changePw.js
+ │     │  │  ├─    findId.js
+ │     │  │  ├─    findPw.js
+ │     │  │  ├─    login.js
+ │     │  │  ├─    main.js
+ │     │  │  ├─    photo.js
+ │     │  │  ├─    privacyInfo-uadate.js
+ │     │  │  ├─    profile-update.js
+ │     │  │  ├─    pwChange.js
+ │     │  │  ├─    signOut.js
+ │     │  │  ├─    signUp.js
+ │     ├─ 📜application.properties
+ │     ├─ 📜config.properties
+ │     ├─ 📜messages.properties
+ │     └─ 📜mybatis-config.xml
+```
+
